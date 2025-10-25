@@ -1,8 +1,12 @@
 import { useGSAP } from "@gsap/react";
-import { flavorlists } from "../constants";
 import gsap from "gsap";
+
+import { featureLists } from "../constants";
 import { useRef } from "react";
 import { useMediaQuery } from "react-responsive";
+import { useEffect } from "react";
+
+
 
 const FlavorSlider = () => {
   const sliderRef = useRef();
@@ -81,57 +85,110 @@ const FlavorSlider = () => {
       );
   });
 
+  useEffect(() => {
+    const cards = document.querySelectorAll('.flavor-card');
+    
+    cards.forEach(card => {
+      const drinks = card.querySelector('.drinks');
+      const elements = card.querySelector('.elements');
+      
+      const handleMouseOver = () => {
+        gsap.to(elements, {
+          scale: 1.03,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        gsap.to(drinks, {
+          scale: 1.01,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+      };
+
+      const handleMouseMove = (e) => {
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const centerX = rect.width / 2;
+        const centerY = rect.height / 2;
+        const deltaX = (x - centerX) / centerX;
+        const deltaY = (y - centerY) / centerY;
+
+        gsap.to(elements, {
+          x: deltaX * -5,
+          y: deltaY * -5,
+          scale: 1.03,
+          duration: 0.3,
+          ease: "power2.out"
+        });
+        gsap.to(drinks, {
+          yPercent: deltaY * -1,
+          scale: 1.01,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+      };
+
+      const handleMouseLeave = () => {
+        gsap.to(elements, {
+          x: 0,
+          y: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+
+        gsap.to(drinks, {
+          yPercent: 0,
+          scale: 1,
+          duration: 0.5,
+          ease: "power2.out"
+        });
+      };
+
+      card.addEventListener('mouseover', handleMouseOver);
+      card.addEventListener('mousemove', handleMouseMove);
+      card.addEventListener('mouseleave', handleMouseLeave);
+
+      return () => {
+        card.removeEventListener('mouseover', handleMouseOver);
+        card.removeEventListener('mousemove', handleMouseMove);
+        card.removeEventListener('mouseleave', handleMouseLeave);
+      };
+    });
+  }, [featureLists]);
+
   return (
     <div ref={sliderRef} className="slider-wrapper">
       <div className="flavors">
-        <div className={`relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none`}
-          >
-           <img
-              src={`/images/Course.png`}
-              alt=""
-              className="absolute bottom-0 w-full h-full object-contain"
-            /> 
- 
-            <img
-              src={`/images/Course.png`}
-              alt=""
-              className="drinks"
-            />
-
-            <img
-              src={`/images/course-elements.png`}
-              alt=""
-              className="elements"
-            />
-
-            <h1 className="text-purple-bg text-center text-6xl font-bold uppercase tracking-tighter">Courses</h1>
-          </div>
-        {/* {flavorlists.map((flavor) => (
+        {featureLists.map((item) => (
           <div
-            key={flavor.name}
-            className={`relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${flavor.rotation}`}
+            key={item.title}
+            className={`flavor-card relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${item.rotation}`}
           >
             <img
-              src={`/images/${flavor.color}-bg.svg`}
-              alt=""
-              className="absolute bottom-0"
+              src={item.image}
+              alt="" 
+              className="absolute bottom-0 w-full"
             />
 
             <img
-              src={`/images/${flavor.color}-drink.webp`}
-              alt=""
-              className="drinks"
-            />
-
-            <img
-              src={`/images/${flavor.color}-elements.webp`}
+              src={item.elementsImg}
               alt=""
               className="elements"
             />
 
-            <h1>{flavor.name}</h1>
+            <img
+              src={`/images/${item.title}.png`}
+              alt=""
+              className="drinks"
+            />
+
+            <h1 className="text-purple-bg text-center text-6xl font-bold uppercase tracking-tighter">
+              {item.title}
+            </h1>
           </div>
-        ))} */}
+        ))}
       </div>
     </div>
   );

@@ -140,7 +140,7 @@ body::-webkit-scrollbar {
   }
 
   .hero-container {
-    @apply relative bg-milk w-screen h-dvh overflow-hidden;
+    @apply relative bg-purple-bg w-screen h-dvh overflow-hidden;
 
     .hero-content {
       @apply relative z-10 w-full h-full flex flex-col 2xl:justify-center items-center translate-y-10 2xl:pt-0 md:pt-32 pt-24;
@@ -150,7 +150,7 @@ body::-webkit-scrollbar {
       }
 
       .hero-text-scroll {
-        @apply rotate-[-3deg] mb-8 border-[.5vw] border-milk;
+        @apply rotate-[-3deg] mb-8 border-[.5vw] border-purple-bg;
 
         .hero-subtitle {
           @apply bg-mid-brown;
@@ -172,7 +172,7 @@ body::-webkit-scrollbar {
   }
 
   .message-content {
-    @apply bg-[#7f3b2d] text-milk min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
+    @apply bg-[#7f3b2d] text-purple-bg min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
 
     .msg-wrapper {
       @apply 2xl:text-[8.5rem] md:text-8xl text-5xl font-bold uppercase leading-[9vw] tracking-[-.35vw] flex flex-col justify-center items-center md:gap-24 gap-14;
@@ -201,10 +201,10 @@ body::-webkit-scrollbar {
   }
 
   .flavor-section {
-    @apply min-h-dvh bg-milk;
+    @apply min-h-dvh bg-purple-bg;
 
     .flavor-text-scroll {
-      @apply rotate-[-3deg] md:translate-y-5 border-[.5vw] border-milk absolute z-10;
+      @apply rotate-[-3deg] md:translate-y-5 border-[.5vw] border-purple-bg absolute z-10;
     }
 
     .first-text-split h1 {
@@ -230,7 +230,7 @@ body::-webkit-scrollbar {
         }
 
         h1 {
-          @apply absolute md:bottom-10 md:left-10 bottom-5 left-5 text-milk md:text-6xl text-3xl font-semibold uppercase tracking-tighter;
+          @apply absolute md:bottom-10 md:left-10 bottom-5 left-5 text-purple-bg md:text-6xl text-3xl font-semibold uppercase tracking-tighter;
         }
       }
     }
@@ -272,7 +272,7 @@ body::-webkit-scrollbar {
     @apply min-h-dvh bg-[#222123] overflow-hidden relative;
 
     p {
-      @apply text-milk font-paragraph text-center text-lg;
+      @apply text-purple-bg font-paragraph text-center text-lg;
     }
 
     .first-title {
@@ -309,13 +309,13 @@ body::-webkit-scrollbar {
   }
 
   .testimonials-section {
-    @apply bg-milk relative w-full h-[120dvh];
+    @apply bg-purple-bg relative w-full h-[120dvh];
 
     .pin-box {
       @apply flex items-center justify-center w-full ps-52 absolute 2xl:bottom-32 bottom-[50vh];
 
       .vd-card {
-        @apply md:w-96 w-80 flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-milk;
+        @apply md:w-96 w-80 flex-none md:rounded-[2vw] rounded-3xl -ms-44 overflow-hidden 2xl:relative absolute border-[.5vw] border-purple-bg;
       }
     }
 
@@ -336,7 +336,7 @@ body::-webkit-scrollbar {
     }
 
     .copyright-box {
-      @apply 2xl:absolute w-full md:px-10 px-5 py-7 bottom-0 text-milk opacity-50 md:text-lg font-paragraph flex gap-7 md:flex-row flex-col-reverse md:justify-between justify-center items-center;
+      @apply 2xl:absolute w-full md:px-10 px-5 py-7 bottom-0 text-purple-bg opacity-50 md:text-lg font-paragraph flex gap-7 md:flex-row flex-col-reverse md:justify-between justify-center items-center;
 
       p {
         @apply text-center;

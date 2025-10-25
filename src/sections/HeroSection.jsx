@@ -30,6 +30,7 @@ const HeroSection = () => {
         ".hero-text-scroll",
         {
           duration: 1,
+          opacity: 1,
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           ease: "circ.out",
         },
@@ -39,6 +40,7 @@ const HeroSection = () => {
         titleSplit.chars,
         {
           yPercent: 200,
+          opacity: 0,
           stagger: 0.02,
           ease: "power2.out",
         },
@@ -62,18 +64,18 @@ const HeroSection = () => {
   });
 
   return (
-    <section className="bg-main-bg">
+    <section className="bg-black">
       <div className="hero-container">
         {isTablet ? (
           <>
-            {isMobile && (
-              <img
-                src="/images/hero-bg.png"
-                className="absolute bottom-40 size-full object-cover"
-              />
-            )}
+            {/* {isMobile && (
+            )} */}
             <img
-              src="/images/hero-img.png"
+              src="/images/temp-hero-bg.png"
+              className="absolute bottom-40 md:bottom-0 size-full object-cover"
+            />
+            <img
+              src="/images/temp-hero.png"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto"
             />
           </>
