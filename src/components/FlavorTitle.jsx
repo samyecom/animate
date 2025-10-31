@@ -54,7 +54,7 @@ const FlavorTitle = () => {
         className="flavor-text-scroll"
       >
         <div className="bg-dark-purple  pb-5 2xl:pt-0 pt-3 2xl:px-5 px-3">
-          <h2 className="text-purple-bg">WeInfluence</h2>
+          <h2 className="text-purple-bg"><span className="text-[#ffbac3]">We</span> Influence</h2>
         </div>
       </div>
 

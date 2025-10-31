@@ -80,7 +80,7 @@ const MessageSection = () => {
               className="msg-text-scroll"
             >
               <div className="bg-purple-bg md:pb-5 pb-3 px-5">
-                <h2 className="text-dark-purple">WeInfluence</h2>
+                <h2 className="text-dark-purple"><span className="text-[#f67f5d]">We</span> Influence</h2>
               </div>
             </div>
 

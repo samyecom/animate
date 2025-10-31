@@ -2,13 +2,17 @@ import { useRef } from "react";
 import { cards } from "../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
+import { useMediaQuery } from "react-responsive";
 
 const TestimonialSection = () => {
   const vdRef = useRef([]);
+  const isMobile = useMediaQuery({
+    query: "(max-width: 768px)",
+  });
 
   useGSAP(() => {
     gsap.set(".testimonials-section", {
-      marginTop: "-140vh",
+      marginTop: isMobile ? "0" : "-140vh",
     });
 
     const tl = gsap.timeline({
@@ -38,21 +42,38 @@ const TestimonialSection = () => {
         "<"
       );
 
-    const pinTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".testimonials-section",
-        start: "10% top",
-        end: "200% top",
-        scrub: 1.5,
-        pin: true,
-      },
-    });
+    if (!isMobile) {
+      const pinTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".testimonials-section",
+          start: "10% top",
+          end: "200% top",
+          scrub: 1.5,
+          pin: true,
+        },
+      });
 
-    pinTl.from(".vd-card", {
-      yPercent: 150,
-      stagger: 0.2,
-      ease: "power1.inOut",
-    });
+      pinTl.from(".vd-card", {
+        yPercent: 150,
+        stagger: 0.2,
+        ease: "power1.inOut",
+      });
+    } else {
+      const mobileTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".testimonials-section",
+          start: "top 80%",
+          end: "bottom 20%",
+          scrub: 1,
+        },
+      });
+
+      mobileTl.from(".vd-card", {
+        yPercent: 150,
+        stagger: 0.2,
+        ease: "power1.inOut",
+      });
+    }
   });
 
   const handlePlay = (index) => {
