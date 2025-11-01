@@ -67,11 +67,7 @@ const HeroSection = () => {
         trigger: ".hero-container",
         start: "top top",
         end: "bottom top",
-        // 'scrub: 1.5' smoothly links the animation to scroll position, 
-        // with a 1.5 second 'catch-up' smoothing/delay. A higher value
-        // (like 1.5) means the animation eases toward the scroll position 
-        // instead of snapping instantly, creating a smoother effect.
-        scrub:2,
+        scrub:1.2,
       },
     });
     blurTl.to(".hero-container", {
@@ -119,9 +115,14 @@ const HeroSection = () => {
               <h1> Portfolios</h1>
             </div>
           </div>
-          <div className="hero-button">
+          <a
+            href="https://wa.me/YOUR_PHONE_NUMBER"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="hero-button"
+          >
             <p>Get In Touch</p>
-          </div>
+          </a>
         </div>
       </div>
     </section>

@@ -1,0 +1,398 @@
+import { useEffect, useRef, useState } from 'react';
+import { useGSAP } from "@gsap/react";
+import gsap from 'gsap';
+import { ScrollTrigger, SplitText } from "gsap/all";
+
+gsap.registerPlugin(ScrollTrigger, SplitText);
+
+const professors = [
+  {
+    id: 1,
+    name: '"THE" PROFESSOR',
+    title: 'PHDribbles at AnkleBreakerU',
+    description: '"The Professor" - legendary instructor at We Influence who once TP-ed an entire neighborhood single-handedly in one night. The Professor teaches students how to one-ply, two-ply, and A-ply themselves in the real world.',
+    image: '/images/prof1.png',
+    bgColor: 'bg-[#EEE5C2]',
+    textColor: 'text-black'
+  },
+  {
+    id: 2,
+    name: '"THE ROOKIE"',
+    title: 'Masters at FreshStartU',
+    description: '"The Rookie" - rising star instructor at We Influence who brings fresh perspectives and innovative teaching methods. Specializes in helping students break through creative barriers and discover their unique voice.',
+    image: '/images/prof2.png',
+    bgColor: 'bg-[#1B475D]'
+  },
+  {
+    id: 3,
+    name: '"THE VETERAN"',
+    title: 'PhD at ExperienceU',
+    description: '"The Veteran" - seasoned expert at We Influence with decades of industry experience. Known for transforming complex concepts into actionable strategies that deliver real-world results.',
+    image: '/images/prof3.png',
+    bgColor: 'bg-[#2e265b]'
+  },
+];
+
+const ProfessorsSection = () => {
+  const sectionRef = useRef(null);
+  const leftColumnRef = useRef(null);
+  const cardsContainerRef = useRef(null);
+  const [activeIndex, setActiveIndex] = useState(0);
+  const [isMobile, setIsMobile] = useState(false);
+  const scrollTriggerInstance = useRef(null);
+  const mainTitleRef = useRef(null);
+  const mobileTitleRef = useRef(null);
+  const splitTextInstances = useRef([]);
+
+  useEffect(() => {
+    const checkMobile = () => {
+      setIsMobile(window.innerWidth < 1024);
+    };
+
+    checkMobile();
+    window.addEventListener('resize', checkMobile);
+
+    return () => window.removeEventListener('resize', checkMobile);
+  }, []);
+
+  useGSAP(() => {
+    const section = sectionRef.current;
+    const leftColumn = leftColumnRef.current;
+    const cardsContainer = cardsContainerRef.current;
+    const mainTitle = mainTitleRef.current;
+    const mobileTitle = mobileTitleRef.current;
+
+    if (isMobile) {
+      if (mobileTitle) {
+        const splitText = SplitText.create(mobileTitle, {
+          type: 'words,chars',
+          wordsClass: 'split-word',
+          charsClass: 'split-char'
+        });
+        
+        splitTextInstances.current.push(splitText);
+        
+        gsap.set(splitText.chars, {
+          opacity: 0,
+          y: 30,
+          scale: 0.8
+        });
+        
+        ScrollTrigger.create({
+          trigger: mobileTitle,
+          start: 'top 80%',
+          onEnter: () => {
+            gsap.to(splitText.chars, {
+              opacity: 1,
+              y: 0,
+              scale: 1,
+              duration: 0.6,
+              stagger: 0.02,
+              ease: 'back.out(1.7)'
+            });
+          }
+        });
+      }
+      return;
+    }
+
+    if (!section || !leftColumn || !cardsContainer || !mainTitle) return;
+
+    const cards = Array.from(cardsContainer.querySelectorAll('.professor-card'));
+    const textContents = Array.from(leftColumn.querySelectorAll('.text-content'));
+
+    const titleSplitText = SplitText.create(mainTitle, {
+      type: 'words,chars',
+      wordsClass: 'split-word',
+      charsClass: 'split-char'
+    });
+    
+    splitTextInstances.current.push(titleSplitText);
+    
+    gsap.set(titleSplitText.chars, {
+      opacity: 0,
+      y: 50,
+      rotationX: -90
+    });
+
+    ScrollTrigger.create({
+      trigger: mainTitle,
+      start: 'top 80%',
+      onEnter: () => {
+        gsap.to(titleSplitText.chars, {
+          opacity: 1,
+          y: 0,
+          rotationX: 0,
+          duration: 0.8,
+          stagger: 0.03,
+          ease: 'back.out(1.7)'
+        });
+      }
+    });
+
+    cards.forEach((card, index) => {
+      gsap.set(card, {
+        scale: index === 0 ? 1 : 0.8,
+        y: index === 0 ? 0 : window.innerHeight + index * 50,
+        rotation: 0,
+        opacity: index === 0 ? 1 : 0,
+        zIndex: professors.length - index,
+        transformOrigin: 'center center',
+      });
+    });
+
+    textContents.forEach((content, index) => {
+      gsap.set(content, {
+        opacity: index === 0 ? 1 : 0,
+        y: index === 0 ? 0 : 30,
+      });
+    });
+
+    scrollTriggerInstance.current = ScrollTrigger.create({
+      trigger: section,
+      start: 'top top',
+      end: `+=${window.innerHeight * (professors.length + 0.5)}`,
+      pin: true,
+      pinSpacing: true,
+      scrub: 1.2,
+      anticipatePin: 1,
+      invalidateOnRefresh: true,
+      onUpdate: (self) => {
+        const progress = self.progress;
+        const totalProgress = progress * professors.length;
+        const currentIndex = Math.min(
+          Math.floor(totalProgress),
+          professors.length - 1
+        );
+        
+        setActiveIndex(currentIndex);
+
+        cards.forEach((card, index) => {
+          if (index === currentIndex) {
+            gsap.set(card, { zIndex: 10 });
+            gsap.to(card, {
+              y: 0,
+              opacity: 1,
+              scale: 1,
+              rotation: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          } else if (index < currentIndex) {
+            const parallaxOffset = (currentIndex - index) * -100;
+            gsap.set(card, { zIndex: 5 - index });
+            gsap.to(card, {
+              y: parallaxOffset,
+              opacity: 0.3,
+              scale: 0.9,
+              rotation: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          } else {
+            gsap.set(card, { zIndex: 1 });
+            gsap.to(card, {
+              y: window.innerHeight + (index - currentIndex) * 50,
+              opacity: 0,
+              scale: 0.8,
+              rotation: 0,
+              duration: 0.8,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        });
+
+        textContents.forEach((content, index) => {
+          if (index === currentIndex) {
+            gsap.to(content, {
+              opacity: 1,
+              y: 0,
+              duration: 0.4,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          } else {
+            gsap.to(content, {
+              opacity: 0,
+              y: index < currentIndex ? -30 : 30,
+              duration: 0.4,
+              ease: 'power2.out',
+              overwrite: 'auto',
+            });
+          }
+        });
+      },
+    });
+
+    return () => {
+      if (scrollTriggerInstance.current) {
+        scrollTriggerInstance.current.kill();
+      }
+      splitTextInstances.current.forEach(instance => {
+        if (instance && instance.revert) {
+          instance.revert();
+        }
+      });
+    };
+  }, [isMobile]);
+
+  if (isMobile) {
+    return (
+      <div className="bg-gray-900">
+        <div className="bg-amber-900 px-6 py-12 text-center">
+          <h2 ref={mobileTitleRef} className="text-4xl sm:text-5xl font-black text-white leading-none mb-4">
+            MEET YOUR
+          </h2>
+          <div className="inline-block">
+            <span className="text-4xl sm:text-5xl font-black text-amber-900 bg-yellow-400 px-6 py-3 transform -skew-x-12 inline-block shadow-lg">
+              PROFESSORS
+            </span>
+          </div>
+        </div>
+
+        {professors.map((prof, index) => (
+          <div key={prof.id} className="mb-0">
+            <div className="relative h-[500px] w-full">
+              <img
+                src={prof.image}
+                alt={`${prof.name}`}
+                className="absolute inset-0 w-full h-full object-cover"
+                onError={(e) => {
+                  e.target.style.display = 'none';
+                  const fallback = e.target.nextElementSibling;
+                  if (fallback) fallback.style.display = 'flex';
+                }}
+              />
+              <div 
+                className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800" 
+                style={{display: 'none'}}
+              >
+                <div className="text-center space-y-4">
+                  <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
+                    <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                    </svg>
+                  </div>
+                  <p className="text-white font-medium">{prof.name}</p>
+                </div>
+              </div>
+            </div>
+
+            <div className={`${prof.bgColor} px-6 py-8 space-y-4`}>
+              <h3 className="text-2xl sm:text-3xl font-bold text-white">
+                {prof.name}
+              </h3>
+              <p className="text-sm sm:text-base text-yellow-300 font-semibold">
+                {prof.title}
+              </p>
+              <p className="text-base sm:text-lg text-white leading-relaxed">
+                {prof.description}
+              </p>
+            </div>
+          </div>
+        ))}
+      </div>
+    );
+  }
+
+  return (
+    <div ref={sectionRef} className="relative min-h-screen pt-20" style={{ backgroundColor: '#8EBD9D' }}>
+      <div className="flex flex-col lg:flex-row min-h-screen">
+        <div 
+          ref={leftColumnRef}
+          className={`w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-12 lg:px-16 py-12 lg:py-20 transition-colors duration-500 ${professors[activeIndex].bgColor}`}
+        >
+          <div className="max-w-2xl w-full">
+            <div className="space-y-3 mb-8">
+              <h2 ref={mainTitleRef} className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none ${activeIndex === 0 ? 'text-black' : 'text-white'}`}>
+                MEET YOUR
+              </h2>
+              <div className="inline-block">
+                <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-amber-900 bg-yellow-400 px-4 sm:px-6 py-2 sm:py-3 transform -skew-x-12 inline-block shadow-lg">
+                  PROFESSORS
+                </span>
+              </div>
+            </div>
+
+            <div className="relative h-64 sm:h-72">
+              {professors.map((prof, index) => (
+                <div
+                  key={prof.id}
+                  className="text-content absolute inset-0 space-y-4"
+                >
+                  <h3 className={`text-2xl sm:text-3xl font-bold ${index === 0 ? 'text-black' : 'text-white'}`}>
+                    {prof.name}
+                  </h3>
+                  <p className={`text-sm sm:text-base font-semibold ${index === 0 ? 'text-black/80' : 'text-yellow-300'}`}>
+                    {prof.title}
+                  </p>
+                  <p className={`text-base sm:text-lg leading-relaxed ${index === 0 ? 'text-black/70' : 'text-white'}`}>
+                    {prof.description}
+                  </p>
+                </div>
+              ))}
+            </div>
+
+            <div className="flex gap-2 mt-8">
+              {professors.map((_, index) => (
+                <div
+                  key={index}
+                  className={`h-1 rounded-full transition-all duration-300 ${
+                    index === activeIndex
+                      ? activeIndex === 0 
+                        ? 'w-12 bg-black' 
+                        : 'w-12 bg-yellow-400'
+                      : activeIndex === 0 
+                        ? 'w-8 bg-black/30' 
+                        : 'w-8 bg-white/50'
+                  }`}
+                />
+              ))}
+            </div>
+          </div>
+        </div>
+
+        <div ref={cardsContainerRef} className="relative w-full lg:w-1/2 min-h-[500px] lg:min-h-screen bg-gray-900 overflow-hidden">
+          {professors.map((prof, index) => (
+            <div
+              key={prof.id}
+              className="professor-card absolute inset-0"
+            >
+              <div className="relative w-full h-full overflow-hidden shadow-2xl bg-gray-800">
+                <img
+                  src={prof.image}
+                  alt={`${prof.name} holding basketball`}
+                  className="absolute inset-0 w-full h-full object-cover"
+                  onError={(e) => {
+                    e.target.style.display = 'none';
+                    const fallback = e.target.nextElementSibling;
+                    if (fallback) fallback.style.display = 'flex';
+                  }}
+                />
+                <div 
+                  className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800" 
+                  style={{display: 'none'}}
+                >
+                  <div className="text-center space-y-4">
+                    <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
+                      <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                      </svg>
+                    </div>
+                    <p className="text-white font-medium">{prof.name}</p>
+                    <p className="text-sm text-gray-300">Professor {index + 1}</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default ProfessorsSection;
