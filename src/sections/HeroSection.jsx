@@ -61,6 +61,23 @@ const HeroSection = () => {
       yPercent: 30,
       ease: "power1.inOut",
     });
+
+    const blurTl = gsap.timeline({
+      scrollTrigger: {
+        trigger: ".hero-container",
+        start: "top top",
+        end: "bottom top",
+        // 'scrub: 1.5' smoothly links the animation to scroll position, 
+        // with a 1.5 second 'catch-up' smoothing/delay. A higher value
+        // (like 1.5) means the animation eases toward the scroll position 
+        // instead of snapping instantly, creating a smoother effect.
+        scrub:2,
+      },
+    });
+    blurTl.to(".hero-container", {
+      filter: "blur(12px)",
+      ease: "power2.inOut",
+    });
   });
 
   return (

@@ -110,7 +110,7 @@ body::-webkit-scrollbar {
     }
 
     p {
-      @apply text-center font-paragraph;
+      @apply text-center font-paragraph text-purple-bg;
     }
 
     h1,
