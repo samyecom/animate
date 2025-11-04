@@ -1,4 +1,5 @@
 import { useMediaQuery } from "react-responsive";
+import { Link } from "react-router-dom";
 
 const FooterSection = () => {
   const isMobile = useMediaQuery({
@@ -87,8 +88,12 @@ const FooterSection = () => {
           {/* The final row with copyright and legal links. */}
           <p>Copyright © 2025 WeInfluence - All Rights Reserved</p>
           <div className="flex items-center gap-7">
-            <p>Privacy Policy</p>
-            <p>Terms of Service</p>
+            <Link to="/privacy-policy" className="hover:opacity-80 transition-opacity">
+              Privacy Policy
+            </Link>
+            <Link to="/terms-of-service" className="hover:opacity-80 transition-opacity">
+              Terms of Service
+            </Link>
           </div>
         </div>
       </div>

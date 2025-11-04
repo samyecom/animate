@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
 import { ScrollTrigger, SplitText } from "gsap/all";
-
+  
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const professors = [
@@ -33,7 +33,7 @@ const professors = [
   },
 ];
 
-const ProfessorsSection = () => {
+const ProfessorsPage = () => {
   const sectionRef = useRef(null);
   const leftColumnRef = useRef(null);
   const cardsContainerRef = useRef(null);
@@ -299,12 +299,12 @@ const ProfessorsSection = () => {
   }
 
   return (
-    <div ref={sectionRef} className="relative min-h-screen pt-20" style={{ backgroundColor: '#8EBD9D' }}>
+    <div ref={sectionRef} className="relative min-h-screen pt-0" style={{ backgroundColor: '#8EBD9D' }}>
       <div className="flex flex-col lg:flex-row min-h-screen">
         <div 
           ref={leftColumnRef}
           className={`w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-12 lg:px-16 py-12 lg:py-20 transition-colors duration-500 ${professors[activeIndex].bgColor}`}
-        >
+          >
           <div className="max-w-2xl w-full">
             <div className="space-y-3 mb-8">
               <h2 ref={mainTitleRef} className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none ${activeIndex === 0 ? 'text-black' : 'text-white'}`}>
@@ -322,7 +322,7 @@ const ProfessorsSection = () => {
                 <div
                   key={prof.id}
                   className="text-content absolute inset-0 space-y-4"
-                >
+                  >
                   <h3 className={`text-2xl sm:text-3xl font-bold ${index === 0 ? 'text-black' : 'text-white'}`}>
                     {prof.name}
                   </h3>
@@ -339,15 +339,15 @@ const ProfessorsSection = () => {
             <div className="flex gap-2 mt-8">
               {professors.map((_, index) => (
                 <div
-                  key={index}
+                key={index}
                   className={`h-1 rounded-full transition-all duration-300 ${
                     index === activeIndex
-                      ? activeIndex === 0 
-                        ? 'w-12 bg-black' 
-                        : 'w-12 bg-yellow-400'
-                      : activeIndex === 0 
-                        ? 'w-8 bg-black/30' 
-                        : 'w-8 bg-white/50'
+                    ? activeIndex === 0 
+                    ? 'w-12 bg-black' 
+                    : 'w-12 bg-yellow-400'
+                    : activeIndex === 0 
+                    ? 'w-8 bg-black/30' 
+                    : 'w-8 bg-white/50'
                   }`}
                 />
               ))}
@@ -358,8 +358,8 @@ const ProfessorsSection = () => {
         <div ref={cardsContainerRef} className="relative w-full lg:w-1/2 min-h-[500px] lg:min-h-screen bg-gray-900 overflow-hidden">
           {professors.map((prof, index) => (
             <div
-              key={prof.id}
-              className="professor-card absolute inset-0"
+            key={prof.id}
+            className="professor-card absolute inset-0"
             >
               <div className="relative w-full h-full overflow-hidden shadow-2xl bg-gray-800">
                 <img
@@ -371,11 +371,11 @@ const ProfessorsSection = () => {
                     const fallback = e.target.nextElementSibling;
                     if (fallback) fallback.style.display = 'flex';
                   }}
-                />
+                  />
                 <div 
                   className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800" 
                   style={{display: 'none'}}
-                >
+                  >
                   <div className="text-center space-y-4">
                     <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
                       <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -395,4 +395,4 @@ const ProfessorsSection = () => {
   );
 };
 
-export default ProfessorsSection;
+export default ProfessorsPage;

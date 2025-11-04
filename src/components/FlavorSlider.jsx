@@ -59,7 +59,7 @@ const FlavorSlider = () => {
 
     titleTl
       .to(".first-text-split", {
-        xPercent: -30,
+        xPercent: -15,
         ease: "none",
         force3D: true,
       })

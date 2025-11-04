@@ -1,8 +1,10 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useMediaQuery } from "react-responsive";
+import { useVideoModal } from "../context/VideoModalContext";
 
 const VideoPinSection = () => {
+  const { openModal } = useVideoModal();
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
@@ -26,6 +28,10 @@ const VideoPinSection = () => {
     }
   });
 
+  const handlePlayClick = () => {
+    openModal("/videos/hero.mp4");
+  };
+
   return (
     <section className="vd-pin-section">
       <div
@@ -40,13 +46,17 @@ const VideoPinSection = () => {
 
         <div className="abs-center md:scale-100 scale-200">
           <img src="/images/circle-text.svg" alt="" className="spin-circle" />
-          <div className="play-btn">
+          <button
+            onClick={handlePlayClick}
+            className="play-btn cursor-pointer hover:scale-110 transition-transform duration-300"
+            aria-label="Play video"
+          >
             <img
               src="/images/play.svg"
               alt=""
               className="size-[3vw] ml-[.5vw]"
             />
-          </div>
+          </button>
         </div>
       </div>
     </section>

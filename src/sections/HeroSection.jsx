@@ -2,6 +2,7 @@ import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
 import { useMediaQuery } from "react-responsive";
+import { useEffect, useState, useRef } from "react";
 
 const HeroSection = () => {
   const isMobile = useMediaQuery({
@@ -12,14 +13,42 @@ const HeroSection = () => {
     query: "(max-width: 1024px)",
   });
 
+  const [preloaderComplete, setPreloaderComplete] = useState(false);
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    const handlePreloaderComplete = () => {
+      setPreloaderComplete(true);
+    };
+
+    window.addEventListener("preloaderComplete", handlePreloaderComplete);
+
+    const preloader = document.querySelector(".preloader");
+    if (!preloader) {
+      setPreloaderComplete(true);
+    }
+
+    return () => {
+      window.removeEventListener("preloaderComplete", handlePreloaderComplete);
+    };
+  }, []);
+
+  useEffect(() => {
+    if (preloaderComplete && videoRef.current) {
+      videoRef.current.play().catch((error) => {
+        console.error("Error playing video:", error);
+      });
+    }
+  }, [preloaderComplete]);
+
   useGSAP(() => {
+    if (!preloaderComplete) return;
+
     const titleSplit = SplitText.create(".hero-title", {
       type: "chars",
     });
 
-    const tl = gsap.timeline({
-      delay: 1,
-    });
+    const tl = gsap.timeline();
 
     tl.to(".hero-content", {
       opacity: 1,
@@ -74,15 +103,13 @@ const HeroSection = () => {
       filter: "blur(12px)",
       ease: "power2.inOut",
     });
-  });
+  }, [preloaderComplete]);
 
   return (
     <section className="bg-black">
       <div className="hero-container">
         {isTablet ? (
           <>
-            {/* {isMobile && (
-            )} */}
             <img
               src="/images/temp-hero-bg.png"
               className="absolute bottom-40 md:bottom-0 size-full object-cover"
@@ -94,8 +121,8 @@ const HeroSection = () => {
           </>
         ) : (
           <video
-            src="/videos/hero-bg.mp4"
-            autoPlay
+            ref={videoRef}
+            src="/videos/hero_bg_vd.mp4"
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover"

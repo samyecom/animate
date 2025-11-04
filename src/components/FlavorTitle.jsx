@@ -17,7 +17,7 @@ const FlavorTitle = () => {
       ease: "power1.inOut",
       scrollTrigger: {
         trigger: ".flavor-section",
-        start: "top 30%",
+        start: "top 20%",
       },
     });
 
