@@ -77,13 +77,12 @@ const MessageSection = () => {
               style={{
                 clipPath: "polygon(0 0, 0 0, 0 100%, 0% 100%)",
               }}
-              className="msg-text-scroll"
+              className="msg-text-scroll "
             >
               <div className="bg-purple-bg md:pb-5 pb-3 px-5">
                 <h2 className="text-dark-purple"><span className="text-[#f67f5d]">We</span> Influence</h2>
               </div>
             </div>
-
             <h1 className="second-message">
             Academy is where every creator levels up
             </h1>

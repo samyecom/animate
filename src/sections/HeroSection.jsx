@@ -116,7 +116,7 @@ const HeroSection = () => {
             />
             <img
               src="/images/temp-hero.png"
-              className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto"
+              className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto h-80"
             />
           </>
         ) : (
