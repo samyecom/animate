@@ -31,7 +31,7 @@ body {
   background-color: var(--color-purple-bg);
   color: #a1236b;
   font-family: "Antonio", sans-serif;
-  overflow-x: hidden;
+  overflow-x: hidden !important;
   scroll-behavior: smooth;
   scrollbar-width: none; /* Firefox */
   -ms-overflow-style: none; /* IE 10+ */
@@ -141,7 +141,7 @@ body::-webkit-scrollbar {
     }
 
     .msg-text-scroll {
-      @apply rotate-[3deg] 2xl:translate-y-3 -translate-y-0 absolute z-10 border-[.5vw] border-dark-purple;
+      @apply rotate-[3deg] 2xl:translate-y-4 -translate-y-5 absolute z-10 border-[.5vw] border-dark-purple;
     }
   }
 
