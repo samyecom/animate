@@ -18,6 +18,7 @@ import { VideoModalProvider, useVideoModal } from "./context/VideoModalContext";
 import VideoModal from "./components/VideoModal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
+import CoursePage from "./pages/CoursePage";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -55,6 +56,51 @@ const AppContent = () => {
       smoothWrapper.scrollTop = 0;
     }
     window.scrollTo(0, 0);
+
+    const pageTitles = {
+      "/": "WeInfluence Academy - Transform Creators to Professionals",
+      "/about-us": "About Us - WeInfluence Academy",
+      "/course": "Course - WeInfluence Academy Flagship Influencer Training Program",
+      "/privacy-policy": "Privacy Policy - WeInfluence Academy",
+      "/terms-of-service": "Terms of Service - WeInfluence Academy",
+    };
+
+    const pageDescriptions = {
+      "/": "WeInfluence Academy helps creators grow, learn, and lead. Transform from creators to professionals with our comprehensive training programs.",
+      "/about-us": "Meet the professors and learn about WeInfluence Academy's mission to transform creators into professionals.",
+      "/course": "WeInfluence Academy Flagship Influencer Training Program - 1 Month, 20 Working Days, 2 hrs/day. Transform from beginner to collaboration-ready influencer.",
+      "/privacy-policy": "Privacy Policy for WeInfluence Academy. Learn how we protect and handle your personal information.",
+      "/terms-of-service": "Terms of Service for WeInfluence Academy. Read our terms and conditions.",
+    };
+
+    const title = pageTitles[location.pathname] || "WeInfluence Academy";
+    const description = pageDescriptions[location.pathname] || "WeInfluence Academy - Transform Creators to Professionals";
+
+    document.title = title;
+
+    let metaDescription = document.querySelector('meta[name="description"]');
+    if (!metaDescription) {
+      metaDescription = document.createElement('meta');
+      metaDescription.setAttribute('name', 'description');
+      document.head.appendChild(metaDescription);
+    }
+    metaDescription.setAttribute('content', description);
+
+    let ogTitle = document.querySelector('meta[property="og:title"]');
+    if (!ogTitle) {
+      ogTitle = document.createElement('meta');
+      ogTitle.setAttribute('property', 'og:title');
+      document.head.appendChild(ogTitle);
+    }
+    ogTitle.setAttribute('content', title);
+
+    let ogDescription = document.querySelector('meta[property="og:description"]');
+    if (!ogDescription) {
+      ogDescription = document.createElement('meta');
+      ogDescription.setAttribute('property', 'og:description');
+      document.head.appendChild(ogDescription);
+    }
+    ogDescription.setAttribute('content', description);
   }, [location.pathname]);
 
   return (
@@ -66,6 +112,7 @@ const AppContent = () => {
           <Routes>
             <Route path="/" element={<HomePage />} />
             <Route path="/about-us" element={<><AboutUsHeroSection /><ProfessorsPage /></>} />
+            <Route path="/course" element={<CoursePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
           </Routes>

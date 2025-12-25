@@ -37,7 +37,7 @@ const featureLists = [
     description: "Learn from the best in the industry",
    mainImage:'/images/Courses.png',
     image: "/images/course-bg.png",
-    link: "#",
+    link: "/course",
     elementsImg: "/images/course-elements.png",
     rotation: "md:rotate-[-8deg] rotate-0",
   },

@@ -1,6 +1,7 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
+import { Link } from "react-router-dom";
 
 const MessageSection = () => {
   useGSAP(() => {
@@ -21,8 +22,8 @@ const MessageSection = () => {
       stagger: 1,
       scrollTrigger: {
         trigger: ".message-content",
-        start: "top center",
-        end: "30% center",
+        start: "top 110%",
+        end: "10% center",
         scrub: true,
       },
     });
@@ -32,8 +33,8 @@ const MessageSection = () => {
       stagger: 1,
       scrollTrigger: {
         trigger: ".second-message",
-        start: "top center",
-        end: "bottom center",
+        start: "top 110%",
+        end: "10% center",
         scrub: true,
       },
     });
@@ -55,7 +56,7 @@ const MessageSection = () => {
     const paragraphTl = gsap.timeline({
       scrollTrigger: {
         trigger: ".message-content p",
-        start: "top center",
+        start: "top 110%",
       },
     });
     paragraphTl.from(paragraphSplit.words, {
@@ -89,12 +90,18 @@ const MessageSection = () => {
             </h1>
           </div>
 
-          <div className="flex-center md:mt-20 mt-10">
+          <div className="flex-center md:mt-20 mt-10 flex-col gap-6">
             <div className="max-w-md px-10 flex-center overflow-hidden">
               <p>
               No matter where you are in your creator journey, WeInfluence helps you grow, learn, and lead.
               </p>
             </div>
+            <Link
+              to="/course"
+              className="bg-purple-bg text-dark-purple font-bold px-8 py-4 rounded hover:opacity-90 transition-opacity"
+            >
+              Explore Our Course
+            </Link>
           </div>
         </div>
       </div>
