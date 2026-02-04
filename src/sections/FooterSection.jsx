@@ -48,32 +48,22 @@ const FooterSection = () => {
           </div>
         </div>
 
-        <div className="mt-40 md:px-10 px-5 flex gap-10 md:flex-row flex-col justify-between text-purple-bg font-paragraph md:text-lg font-medium">
-          <div className="flex items-center md:gap-16 gap-5">
-            <div>
-              <p>WeInfluence Academy</p>
-            </div>
-            <div>
-              <p>Chug Club</p>
-              <p>Student Marketing</p>
-              <p>Dairy Dealers</p>
-            </div>
-            <div>
-              <p>Company</p>
-              <p>Contacts</p>
-              <p>Tasty Talk</p>
+        <div className="mt-20 md:px-10 px-5 flex flex-col md:flex-row justify-between text-purple-bg font-paragraph md:text-lg font-medium">
+          <div>
+            <p className="font-bold">WeInfluence Academy</p>
+            <div className="mt-4 flex flex-col gap-2">
+              <Link to="/about-us" className="hover:opacity-80 transition-opacity">About Us</Link>
+              <Link to="/course" className="hover:opacity-80 transition-opacity">Course</Link>
+              <Link to="/privacy-policy" className="hover:opacity-80 transition-opacity">Privacy Policy</Link>
             </div>
           </div>
 
-          <div className="md:max-w-lg">
+          <div className="md:max-w-lg mt-8 md:mt-0">
             <p>
               Get Exclusive Early Access and Stay Informed About Product
               Updates, Events, and More!
             </p>
-            <div className="flex justify-between items-center border-b border-purple-bg py-5 md:mt-10">
-              {/* The input field and arrow icon for newsletter signup. */}{" "}
-              {/* A
-          border at the bottom for a clean, modern look. */}
+            <div className="flex justify-between items-center border-b border-purple-bg py-5 md:mt-4">
               <input
                 type="email"
                 placeholder="Enter your email"
@@ -85,16 +75,7 @@ const FooterSection = () => {
         </div>
 
         <div className="copyright-box">
-          {/* The final row with copyright and legal links. */}
           <p>Copyright © 2025 WeInfluence - All Rights Reserved</p>
-          <div className="flex items-center gap-7">
-            <Link to="/privacy-policy" className="hover:opacity-80 transition-opacity">
-              Privacy Policy
-            </Link>
-            <Link to="/terms-of-service" className="hover:opacity-80 transition-opacity">
-              Terms of Service
-            </Link>
-          </div>
         </div>
       </div>
     </section>

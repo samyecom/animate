@@ -160,37 +160,36 @@ const FlavorSlider = () => {
     <div ref={sliderRef} className="slider-wrapper">
       <div className="flavors">
         {featureLists.map((item) => {
-          const CardContent = (
-            <Link
-              to={item.link}
-              key={item.title}
-              className={`flavor-card relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${item.rotation}`}
-            >
-              <img
-                src={item.image}
-                alt="" 
-                className="absolute bottom-0 w-full"
-              />
+          const isExternal = item.openInNewTab || (item.link && item.link.startsWith('http'));
+          const commonProps = {
+            key: item.title,
+            className: `flavor-card relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${item.rotation}`,
+          };
 
-              <img
-                src={item.elementsImg}
-                alt=""
-                className="elements"
-              />
-
-              <img
-                src={`${item.mainImage}`}
-                alt=""
-                className="drinks"
-              />
-
+          const content = (
+            <>
+              <img src={item.image} alt="" className="absolute bottom-0 w-full" />
+              <img src={item.elementsImg} alt="" className="elements" />
+              <img src={`${item.mainImage}`} alt="" className="drinks" />
               <h1 className="text-purple-bg text-center text-6xl font-bold uppercase tracking-tighter">
                 {item.title}
               </h1>
-            </Link>
+            </>
           );
 
-          return CardContent;
+          if (isExternal) {
+            return (
+              <a href={item.link} target="_blank" rel="noopener noreferrer" {...commonProps}>
+                {content}
+              </a>
+            );
+          }
+
+          return (
+            <Link to={item.link} {...commonProps}>
+              {content}
+            </Link>
+          );
         })}
       </div>
     </div>

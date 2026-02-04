@@ -122,7 +122,7 @@ const HeroSection = () => {
         ) : (
           <video
             ref={videoRef}
-            src="/videos/hero_bg_vd.mp4"
+            src="/videos/hero_bg_og.mp4"
             muted
             playsInline
             className="absolute inset-0 w-full h-full object-cover"

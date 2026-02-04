@@ -8,28 +8,39 @@ gsap.registerPlugin(ScrollTrigger, SplitText);
 const professors = [
   {
     id: 1,
-    name: '"THE" PROFESSOR',
-    title: 'PHDribbles at AnkleBreakerU',
-    description: '"The Professor" - legendary instructor at We Influence who once TP-ed an entire neighborhood single-handedly in one night. The Professor teaches students how to one-ply, two-ply, and A-ply themselves in the real world.',
-    image: '/images/prof1.png',
+    name: 'Mohita “The Influence Maestro” Chitkara',
+    title: 'Chief Creator Conductor',
+    description: 'Mohita is the heartbeat of WeInfluence — the strategist who turns scrolls into soul and followers into fans. With her uncanny ability to decode what makes content click, she leads with heart, humor, and an endless stream of clever ideas that never stop engaging. ✨ Believes that great influence starts with one unforgettable “hello.”',
+    image: '/images/team1.jpg',
     bgColor: 'bg-[#EEE5C2]',
     textColor: 'text-black'
   },
   {
     id: 2,
-    name: '"THE ROOKIE"',
-    title: 'Masters at FreshStartU',
-    description: '"The Rookie" - rising star instructor at We Influence who brings fresh perspectives and innovative teaching methods. Specializes in helping students break through creative barriers and discover their unique voice.',
-    image: '/images/prof2.png',
-    bgColor: 'bg-[#1B475D]'
+    name: 'Manoj “The Strategy Ninja” Sharma',
+    title: 'Head of Execution & Master Planner',
+    description: 'Manoj doesn’t just make plans — he makes impactful moves. Whether it’s campaign architecture or creator playbooks, he’s the one architecting strategic magic behind the scenes. If strategy had a secret sauce, he’d bottle it and sell it. ⚔️ Operating on strategy fuel and coffee.',
+    image: '/images/team2.jpg',
+    bgColor: 'bg-[#1B475D]',
+    textColor: 'text-white'
   },
   {
     id: 3,
-    name: '"THE VETERAN"',
-    title: 'PhD at ExperienceU',
-    description: '"The Veteran" - seasoned expert at We Influence with decades of industry experience. Known for transforming complex concepts into actionable strategies that deliver real-world results.',
-    image: '/images/prof3.png',
-    bgColor: 'bg-[#2e265b]'
+    name: 'Ravinder “The Growth Alchemist” Gulati',
+    title: 'Chief Metrics Magician',
+    description: 'Ravinder is the wizard who turns data into direction and numbers into narratives. A mix of analytics expertise and creative intuition makes him the go-to for growth machinations that actually make sense. 📈 If engagement was an Olympic sport, Ravinder would podium every time.',
+    image: '/images/team3.jpg',
+    bgColor: 'bg-[#2e265b]',
+    textColor: 'text-white'
+  },
+  {
+    id: 4,
+    name: 'Rajesh “The Culture Catalyst” Chaudhary',
+    title: 'Maestro of Team Mojo',
+    description: 'Meet the spark plug of the crew. Rajesh keeps the energy infectious and the culture electrified — aligning teams, ideas, and ambitions in perfect harmony. Where there’s chaos, he finds clarity (with a grin). 🎧 Believes every team needs a soundtrack and a strategy.',
+    image: '/images/team4.jpg',
+    bgColor: 'bg-[#F5E0E0]',
+    textColor: 'text-black'
   },
 ];
 
@@ -244,11 +255,11 @@ const ProfessorsPage = () => {
       <div className="bg-gray-900">
         <div className="bg-amber-900 px-6 py-12 text-center">
           <h2 ref={mobileTitleRef} className="text-4xl sm:text-5xl font-black text-white leading-none mb-4">
-            MEET YOUR
+            MEET THE
           </h2>
           <div className="inline-block">
             <span className="text-4xl sm:text-5xl font-black text-amber-900 bg-yellow-400 px-6 py-3 transform -skew-x-12 inline-block shadow-lg">
-              PROFESSORS
+              TEAM
             </span>
           </div>
         </div>
@@ -307,33 +318,39 @@ const ProfessorsPage = () => {
           >
           <div className="max-w-2xl w-full">
             <div className="space-y-3 mb-8">
-              <h2 ref={mainTitleRef} className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none ${activeIndex === 0 ? 'text-black' : 'text-white'}`}>
-                MEET YOUR
-              </h2>
-              <div className="inline-block">
+              <h2 ref={mainTitleRef} className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none ${professors[activeIndex].textColor}`}>
+                MEET THE
+              <div className="inline-block ml-5">
                 <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-amber-900 bg-yellow-400 px-4 sm:px-6 py-2 sm:py-3 transform -skew-x-12 inline-block shadow-lg">
-                  PROFESSORS
+                  TEAM
                 </span>
               </div>
+              </h2>
             </div>
 
             <div className="relative h-64 sm:h-72">
-              {professors.map((prof, index) => (
+              {professors.map((prof, index) => {
+                const isActive = index === activeIndex;
+                const activeColor = professors[activeIndex].textColor || 'text-black';
+                const mutedActive = activeColor === 'text-black' ? 'text-black/70' : 'text-white/70';
+                const subtitleActive = activeColor === 'text-black' ? 'text-black/80' : 'text-yellow-300';
+                return (
                 <div
                   key={prof.id}
                   className="text-content absolute inset-0 space-y-4"
                   >
-                  <h3 className={`text-2xl sm:text-3xl font-bold ${index === 0 ? 'text-black' : 'text-white'}`}>
+                  <h3 className={`text-2xl sm:text-3xl font-bold ${isActive ? activeColor : 'text-white'}`}>
                     {prof.name}
                   </h3>
-                  <p className={`text-sm sm:text-base font-semibold ${index === 0 ? 'text-black/80' : 'text-yellow-300'}`}>
+                  <p className={`text-sm sm:text-base font-semibold ${isActive ? subtitleActive : 'text-yellow-300'}`}>
                     {prof.title}
                   </p>
-                  <p className={`text-base sm:text-lg leading-relaxed ${index === 0 ? 'text-black/70' : 'text-white'}`}>
+                  <p className={`text-base sm:text-lg leading-relaxed ${isActive ? mutedActive : 'text-white'}`}>
                     {prof.description}
                   </p>
                 </div>
-              ))}
+                )
+              })}
             </div>
 
             <div className="flex gap-2 mt-8">
