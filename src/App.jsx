@@ -11,7 +11,7 @@ import BenefitSection from "./sections/BenefitSection";
 import TestimonialSection from "./sections/TestimonialSection";
 import FooterSection from "./sections/FooterSection";
 import AboutUsHeroSection from "./about-us/HeroSection";
-import ProfessorsPage from "./pages/ProfessorsPage";
+import TeamSection from "./about-us/TeamSection";
 import { useEffect } from "react";
 import Preloader from "./components/Preloader";
 import { VideoModalProvider, useVideoModal } from "./context/VideoModalContext";
@@ -111,7 +111,7 @@ const AppContent = () => {
         <div id="smooth-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
-            <Route path="/about-us" element={<><AboutUsHeroSection /><ProfessorsPage /></>} />
+            <Route path="/about-us" element={<><AboutUsHeroSection /><TeamSection /></>} />
             <Route path="/course" element={<CoursePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />

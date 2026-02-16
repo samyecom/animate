@@ -147,7 +147,7 @@ const ProfessorsPage = () => {
         y: index === 0 ? 0 : window.innerHeight + index * 50,
         rotation: 0,
         opacity: index === 0 ? 1 : 0,
-        zIndex: professors.length - index,
+        zIndex: index === 0 ? 100 : 1,
         transformOrigin: 'center center',
       });
     });
@@ -166,17 +166,6 @@ const ProfessorsPage = () => {
       pin: true,
       pinSpacing: true,
       scrub: 0.8,
-      snap: {
-        snapTo: (progress) => {
-          const snapPoints = professors.map((_, i) => i / professors.length);
-          return snapPoints.reduce((prev, curr) =>
-            Math.abs(curr - progress) < Math.abs(prev - progress) ? curr : prev
-          );
-        },
-        duration: { min: 0.3, max: 0.6 },
-        delay: 0.05,
-        ease: "power2.inOut",
-      },
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
@@ -191,7 +180,7 @@ const ProfessorsPage = () => {
 
         cards.forEach((card, index) => {
           if (index === currentIndex) {
-            gsap.set(card, { zIndex: 10 });
+            gsap.set(card, { zIndex: 100 });
             gsap.to(card, {
               y: 0,
               opacity: 1,
@@ -203,10 +192,10 @@ const ProfessorsPage = () => {
             });
           } else if (index < currentIndex) {
             const parallaxOffset = (currentIndex - index) * -100;
-            gsap.set(card, { zIndex: 5 - index });
+            gsap.set(card, { zIndex: index });
             gsap.to(card, {
               y: parallaxOffset,
-              opacity: 0.3,
+              opacity: 0,
               scale: 0.9,
               rotation: 0,
               duration: 0.8,

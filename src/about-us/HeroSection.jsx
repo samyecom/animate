@@ -1,7 +1,9 @@
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { SplitText } from "gsap/all";
-import AboutSection from "./AboutSection";
+import AboutHeroSection from "./AboutHeroSection";
+
+gsap.registerPlugin(SplitText);
 
 const AboutUsHeroSection = () => {
   useGSAP(() => {
@@ -9,47 +11,48 @@ const AboutUsHeroSection = () => {
       type: "chars",
     });
 
-    const subtitleSplit = SplitText.create(".about-hero-subtitle", {
-      type: "chars",
-    });
-
     const tl = gsap.timeline({
-      delay: 1,
+      delay: 0.5,
     });
 
-    tl.to(".about-hero-content", {
-      opacity: 1,
-      y: 0,
-      ease: "power1.inOut",
+    tl.from(".about-hero-content", {
+      opacity: 0,
+      y: 50,
+      duration: 1,
+      filter: "blur(10px)",
+      ease: "power2.out",
     })
       .from(
         titleSplit.chars,
         {
-          yPercent: 200,
-          opacity: 0,
-          stagger: 0.02,
-          ease: "power2.out",
-        },
-        "-=0.5"
-      )
-      .from(
-        subtitleSplit.chars,
-        {
           yPercent: 100,
           opacity: 0,
-          stagger: 0.01,
-          ease: "power2.out",
+          filter: "blur(10px)",
+          stagger: 0.05,
+          ease: "power3.out",
+          duration: 0.8,
         },
-        "-=0.3"
+        "-=0.7"
+      )
+      .to(
+        ".about-hero-text-scroll",
+        {
+          duration: 1.2,
+          opacity: 1,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        },
+        "-=0.6"
       );
 
+    return () => {
+      titleSplit.revert();
+    };
   });
 
   return (
     <>
-      <section className="about-hero-section bg-purple-bg pt-5">
-      </section>
-      <AboutSection />
+      <AboutHeroSection />
     </>
   );
 };

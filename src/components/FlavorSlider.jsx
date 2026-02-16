@@ -14,82 +14,83 @@ const FlavorSlider = () => {
   });
 
   useGSAP(() => {
-    if (!isTablet && sliderRef.current) {
-      const flavors = sliderRef.current.querySelector('.flavors');
-      const scrollAmount = flavors.scrollWidth - window.innerWidth;
+    const mm = gsap.matchMedia();
 
-      gsap.set(flavors, { 
-        willChange: "transform",
-        force3D: true 
-      });
+    mm.add("(min-width: 1025px)", () => {
+      if (sliderRef.current) {
+        const flavors = sliderRef.current.querySelector(".flavors");
+        const scrollAmount = flavors.scrollWidth - window.innerWidth;
 
-      const tl = gsap.timeline({
+        gsap.set(flavors, {
+          willChange: "transform",
+          force3D: true,
+        });
+
+        const tl = gsap.timeline({
+          scrollTrigger: {
+            trigger: ".flavor-section",
+            start: "2% top",
+            end: `+=${scrollAmount + 1500}px`,
+            scrub: 0.8,
+            pin: true,
+            anticipatePin: 1,
+            invalidateOnRefresh: true,
+          },
+        });
+
+        tl.to(flavors, {
+          x: `-${scrollAmount + 1500}px`,
+          ease: "none",
+          force3D: true,
+        });
+      }
+    });
+
+    // Handle title parallax for all screens but with different intensities
+    mm.add("(min-width: 1025px)", () => {
+      const titleTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".flavor-section",
-          start: "2% top",
-          end: `+=${scrollAmount + 1500}px`,
+          start: "top top",
+          end: "bottom 80%",
           scrub: 0.8,
-          pin: true,
-          anticipatePin: 1,
           invalidateOnRefresh: true,
         },
       });
 
-      tl.to(flavors, {
-        x: `-${scrollAmount + 1500}px`,
-        ease: "none",
-        force3D: true,
+      titleTl
+        .to(".first-text-split", { xPercent: -15, ease: "none", force3D: true })
+        .to(".flavor-text-scroll", { xPercent: -22, ease: "none", force3D: true }, "<")
+        .to(".second-text-split", { xPercent: -10, ease: "none", force3D: true }, "<");
+    });
+
+    mm.add("(max-width: 1024px)", () => {
+      // Mobile parallax (less intense)
+      const titleTl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".flavor-section",
+          start: "top top",
+          end: "bottom bottom",
+          scrub: 0.8,
+        },
       });
-    }
 
-    gsap.set([".first-text-split", ".flavor-text-scroll", ".second-text-split"], { 
-      willChange: "transform",
-      force3D: true 
+      titleTl
+        .to(".first-text-split", { xPercent: -5, ease: "none" })
+        .to(".flavor-text-scroll", { xPercent: -8, ease: "none" }, "<")
+        .to(".second-text-split", { xPercent: -3, ease: "none" }, "<");
     });
 
-    const titleTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".flavor-section",
-        start: "top top",
-        end: "bottom 80%",
-        scrub: 0.8,
-        invalidateOnRefresh: true,
-      },
-    });
-
-    titleTl
-      .to(".first-text-split", {
-        xPercent: -15,
-        ease: "none",
-        force3D: true,
-      })
-      .to(
-        ".flavor-text-scroll",
-        {
-          xPercent: -22,
-          ease: "none",
-          force3D: true,
-        },
-        "<"
-      )
-      .to(
-        ".second-text-split",
-        {
-          xPercent: -10,
-          ease: "none",
-          force3D: true,
-        },
-        "<"
-      );
+    return () => mm.revert();
   });
 
   useEffect(() => {
     const cards = document.querySelectorAll('.flavor-card');
-    
+
     cards.forEach(card => {
       const drinks = card.querySelector('.drinks');
       const elements = card.querySelector('.elements');
-      
+
       const handleMouseOver = () => {
         gsap.to(elements, {
           scale: 1.03,

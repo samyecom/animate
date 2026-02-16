@@ -11,38 +11,24 @@ const TestimonialSection = () => {
   });
 
   useGSAP(() => {
-    gsap.set(".testimonials-section", {
-      marginTop: isMobile ? "0" : "-140vh",
-    });
+    const mm = gsap.matchMedia();
 
-    const tl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".testimonials-section",
-        start: "top bottom",
-        end: "200% top",
-        scrub: true,
-      },
-    });
+    mm.add("(min-width: 1025px)", () => {
+      gsap.set(".testimonials-section", { marginTop: "-140vh" });
 
-    tl.to(".testimonials-section .first-title", {
-      xPercent: 70,
-    })
-      .to(
-        ".testimonials-section .sec-title",
-        {
-          xPercent: 25,
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".testimonials-section",
+          start: "top bottom",
+          end: "200% top",
+          scrub: true,
         },
-        "<"
-      )
-      .to(
-        ".testimonials-section .third-title",
-        {
-          xPercent: -50,
-        },
-        "<"
-      );
+      });
 
-    if (!isMobile) {
+      tl.to(".testimonials-section .first-title", { xPercent: 70 })
+        .to(".testimonials-section .sec-title", { xPercent: 25 }, "<")
+        .to(".testimonials-section .third-title", { xPercent: -50 }, "<");
+
       const pinTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".testimonials-section",
@@ -58,7 +44,24 @@ const TestimonialSection = () => {
         stagger: 0.2,
         ease: "power1.inOut",
       });
-    } else {
+    });
+
+    mm.add("(max-width: 1024px)", () => {
+      gsap.set(".testimonials-section", { marginTop: "0" });
+
+      const tl = gsap.timeline({
+        scrollTrigger: {
+          trigger: ".testimonials-section",
+          start: "top bottom",
+          end: "bottom top",
+          scrub: true,
+        },
+      });
+
+      tl.to(".testimonials-section .first-title", { xPercent: 30 })
+        .to(".testimonials-section .sec-title", { xPercent: 10 }, "<")
+        .to(".testimonials-section .third-title", { xPercent: -20 }, "<");
+
       const mobileTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".testimonials-section",
@@ -69,11 +72,13 @@ const TestimonialSection = () => {
       });
 
       mobileTl.from(".vd-card", {
-        yPercent: 150,
+        yPercent: 100,
         stagger: 0.2,
         ease: "power1.inOut",
       });
-    }
+    });
+
+    return () => mm.revert();
   });
 
   const handlePlay = (index) => {

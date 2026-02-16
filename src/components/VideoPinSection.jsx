@@ -10,7 +10,9 @@ const VideoPinSection = () => {
   });
 
   useGSAP(() => {
-    if (!isMobile) {
+    const mm = gsap.matchMedia();
+
+    mm.add("(min-width: 1025px)", () => {
       const tl = gsap.timeline({
         scrollTrigger: {
           trigger: ".vd-pin-section",
@@ -25,7 +27,14 @@ const VideoPinSection = () => {
         clipPath: "circle(100% at 50% 50%)",
         ease: "power1.inOut",
       });
-    }
+    });
+
+    mm.add("(max-width: 1024px)", () => {
+      // On mobile, we keep the circle full but maybe add a subtle entrance or just leave it static as per design
+      gsap.set(".video-box", { clipPath: "circle(100% at 50% 50%)" });
+    });
+
+    return () => mm.revert();
   });
 
   const handlePlayClick = () => {

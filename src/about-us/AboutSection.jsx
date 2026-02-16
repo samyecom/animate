@@ -7,22 +7,23 @@ const AboutSection = () => {
     const tl = gsap.timeline({
       scrollTrigger: {
         trigger: ".about-text-section",
-        start: "top 70%",
+        start: "top 90%",
         end: "bottom 30%",
-        scrub: 1,
+        scrub: 0.5,
       },
     });
 
     tl.from(".about-text-content", {
       opacity: 0,
-      y: 50,
+      filter: "blur(10px)",
+      y: 30,
       duration: 1,
       ease: "power2.out",
     });
   });
 
   return (
-    <section className="about-text-section bg-purple-bg py-10 md:py-16">
+    <section className="about-text-section bg-purple-bg py-8 md:py-12">
       <div className="container mx-auto px-6 md:px-12">
         <div className="max-w-4xl mx-auto">
           <div className="about-text-content">

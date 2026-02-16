@@ -44,65 +44,86 @@ const HeroSection = () => {
   useGSAP(() => {
     if (!preloaderComplete) return;
 
-    const titleSplit = SplitText.create(".hero-title", {
-      type: "chars",
-    });
+    const mm = gsap.matchMedia();
 
-    const tl = gsap.timeline();
+    mm.add("(min-width: 1025px)", () => {
+      // Desktop specific animations
+      const titleSplit = SplitText.create(".hero-title", { type: "chars" });
+      const tl = gsap.timeline();
 
-    tl.to(".hero-content", {
-      opacity: 1,
-      y: 0,
-      ease: "power1.inOut",
-    })
-      .to(
-        ".hero-text-scroll",
-        {
+      tl.to(".hero-content", { opacity: 1, y: 0, ease: "power1.inOut" })
+        .to(".hero-text-scroll", {
           duration: 1,
           opacity: 1,
           clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
           ease: "circ.out",
-        },
-        "-=0.5"
-      )
-      .from(
-        titleSplit.chars,
-        {
+        }, "-=0.5")
+        .from(titleSplit.chars, {
           yPercent: 200,
           opacity: 0,
           stagger: 0.02,
           ease: "power2.out",
-        },
-        "-=0.5"
-      );
+        }, "-=0.5");
 
-    const heroTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero-container",
-        start: "1% top",
-        end: "bottom top",
-        scrub: true,
-      },
-    });
-    heroTl.to(".hero-container", {
-      rotate: 7,
-      scale: 0.9,
-      yPercent: 30,
-      ease: "power1.inOut",
+      gsap.to(".hero-container", {
+        rotate: 7,
+        scale: 0.9,
+        yPercent: 30,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: ".hero-container",
+          start: "1% top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
+
+      gsap.to(".hero-container", {
+        filter: "blur(12px)",
+        ease: "power2.inOut",
+        scrollTrigger: {
+          trigger: ".hero-container",
+          start: "top top",
+          end: "bottom top",
+          scrub: 1.2,
+        }
+      });
     });
 
-    const blurTl = gsap.timeline({
-      scrollTrigger: {
-        trigger: ".hero-container",
-        start: "top top",
-        end: "bottom top",
-        scrub:1.2,
-      },
+    mm.add("(max-width: 1024px)", () => {
+      // Mobile & Tablet specific animations
+      const titleSplit = SplitText.create(".hero-title", { type: "chars" });
+      const tl = gsap.timeline();
+
+      tl.to(".hero-content", { opacity: 1, y: 0, ease: "power1.inOut" })
+        .to(".hero-text-scroll", {
+          duration: 1,
+          opacity: 1,
+          clipPath: "polygon(0% 0%, 100% 0%, 100% 100%, 0% 100%)",
+          ease: "circ.out",
+        }, "-=0.5")
+        .from(titleSplit.chars, {
+          yPercent: 200,
+          opacity: 0,
+          stagger: 0.02,
+          ease: "power2.out",
+        }, "-=0.5");
+
+      // Reduced intensity scroll effects for mobile
+      gsap.to(".hero-container", {
+        scale: 0.95,
+        yPercent: 10,
+        ease: "power1.inOut",
+        scrollTrigger: {
+          trigger: ".hero-container",
+          start: "top top",
+          end: "bottom top",
+          scrub: true,
+        }
+      });
     });
-    blurTl.to(".hero-container", {
-      filter: "blur(12px)",
-      ease: "power2.inOut",
-    });
+
+    return () => mm.revert();
   }, [preloaderComplete]);
 
   return (
