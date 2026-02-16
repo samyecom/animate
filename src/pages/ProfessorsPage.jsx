@@ -2,7 +2,7 @@ import { useEffect, useRef, useState } from 'react';
 import { useGSAP } from "@gsap/react";
 import gsap from 'gsap';
 import { ScrollTrigger, SplitText } from "gsap/all";
-  
+
 gsap.registerPlugin(ScrollTrigger, SplitText);
 
 const professors = [
@@ -11,7 +11,7 @@ const professors = [
     name: 'Mohita “The Influence Maestro” Chitkara',
     title: 'Chief Creator Conductor',
     description: 'Mohita is the heartbeat of WeInfluence — the strategist who turns scrolls into soul and followers into fans. With her uncanny ability to decode what makes content click, she leads with heart, humor, and an endless stream of clever ideas that never stop engaging. ✨ Believes that great influence starts with one unforgettable “hello.”',
-    image: '/images/team1.jpg',
+    image: '/images/team1.png',
     bgColor: 'bg-[#EEE5C2]',
     textColor: 'text-black'
   },
@@ -80,15 +80,15 @@ const ProfessorsPage = () => {
           wordsClass: 'split-word',
           charsClass: 'split-char'
         });
-        
+
         splitTextInstances.current.push(splitText);
-        
+
         gsap.set(splitText.chars, {
           opacity: 0,
           y: 30,
           scale: 0.8
         });
-        
+
         ScrollTrigger.create({
           trigger: mobileTitle,
           start: 'top 80%',
@@ -117,9 +117,9 @@ const ProfessorsPage = () => {
       wordsClass: 'split-word',
       charsClass: 'split-char'
     });
-    
+
     splitTextInstances.current.push(titleSplitText);
-    
+
     gsap.set(titleSplitText.chars, {
       opacity: 0,
       y: 50,
@@ -165,7 +165,18 @@ const ProfessorsPage = () => {
       end: `+=${window.innerHeight * (professors.length + 0.5)}`,
       pin: true,
       pinSpacing: true,
-      scrub: 1.2,
+      scrub: 0.8,
+      snap: {
+        snapTo: (progress) => {
+          const snapPoints = professors.map((_, i) => i / professors.length);
+          return snapPoints.reduce((prev, curr) =>
+            Math.abs(curr - progress) < Math.abs(prev - progress) ? curr : prev
+          );
+        },
+        duration: { min: 0.3, max: 0.6 },
+        delay: 0.05,
+        ease: "power2.inOut",
+      },
       anticipatePin: 1,
       invalidateOnRefresh: true,
       onUpdate: (self) => {
@@ -175,7 +186,7 @@ const ProfessorsPage = () => {
           Math.floor(totalProgress),
           professors.length - 1
         );
-        
+
         setActiveIndex(currentIndex);
 
         cards.forEach((card, index) => {
@@ -277,9 +288,9 @@ const ProfessorsPage = () => {
                   if (fallback) fallback.style.display = 'flex';
                 }}
               />
-              <div 
-                className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800" 
-                style={{display: 'none'}}
+              <div
+                className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800"
+                style={{ display: 'none' }}
               >
                 <div className="text-center space-y-4">
                   <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
@@ -312,19 +323,19 @@ const ProfessorsPage = () => {
   return (
     <div ref={sectionRef} className="relative min-h-screen pt-0" style={{ backgroundColor: '#8EBD9D' }}>
       <div className="flex flex-col lg:flex-row min-h-screen">
-        <div 
+        <div
           ref={leftColumnRef}
           className={`w-full lg:w-1/2 flex items-center justify-center px-6 sm:px-12 lg:px-16 py-12 lg:py-20 transition-colors duration-500 ${professors[activeIndex].bgColor}`}
-          >
+        >
           <div className="max-w-2xl w-full">
             <div className="space-y-3 mb-8">
               <h2 ref={mainTitleRef} className={`text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black leading-none ${professors[activeIndex].textColor}`}>
                 MEET THE
-              <div className="inline-block ml-5">
-                <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-amber-900 bg-yellow-400 px-4 sm:px-6 py-2 sm:py-3 transform -skew-x-12 inline-block shadow-lg">
-                  TEAM
-                </span>
-              </div>
+                <div className="inline-block ml-5">
+                  <span className="text-4xl sm:text-5xl lg:text-6xl xl:text-7xl font-black text-amber-900 bg-yellow-400 px-4 sm:px-6 py-2 sm:py-3 transform -skew-x-12 inline-block shadow-lg">
+                    TEAM
+                  </span>
+                </div>
               </h2>
             </div>
 
@@ -335,20 +346,20 @@ const ProfessorsPage = () => {
                 const mutedActive = activeColor === 'text-black' ? 'text-black/70' : 'text-white/70';
                 const subtitleActive = activeColor === 'text-black' ? 'text-black/80' : 'text-yellow-300';
                 return (
-                <div
-                  key={prof.id}
-                  className="text-content absolute inset-0 space-y-4"
+                  <div
+                    key={prof.id}
+                    className="text-content absolute inset-0 space-y-4"
                   >
-                  <h3 className={`text-2xl sm:text-3xl font-bold ${isActive ? activeColor : 'text-white'}`}>
-                    {prof.name}
-                  </h3>
-                  <p className={`text-sm sm:text-base font-semibold ${isActive ? subtitleActive : 'text-yellow-300'}`}>
-                    {prof.title}
-                  </p>
-                  <p className={`text-base sm:text-lg leading-relaxed ${isActive ? mutedActive : 'text-white'}`}>
-                    {prof.description}
-                  </p>
-                </div>
+                    <h3 className={`text-2xl sm:text-3xl font-bold ${isActive ? activeColor : 'text-white'}`}>
+                      {prof.name}
+                    </h3>
+                    <p className={`text-sm sm:text-base font-semibold ${isActive ? subtitleActive : 'text-yellow-300'}`}>
+                      {prof.title}
+                    </p>
+                    <p className={`text-base sm:text-lg leading-relaxed ${isActive ? mutedActive : 'text-white'}`}>
+                      {prof.description}
+                    </p>
+                  </div>
                 )
               })}
             </div>
@@ -356,16 +367,15 @@ const ProfessorsPage = () => {
             <div className="flex gap-2 mt-8">
               {professors.map((_, index) => (
                 <div
-                key={index}
-                  className={`h-1 rounded-full transition-all duration-300 ${
-                    index === activeIndex
-                    ? activeIndex === 0 
-                    ? 'w-12 bg-black' 
-                    : 'w-12 bg-yellow-400'
-                    : activeIndex === 0 
-                    ? 'w-8 bg-black/30' 
-                    : 'w-8 bg-white/50'
-                  }`}
+                  key={index}
+                  className={`h-1 rounded-full transition-all duration-300 ${index === activeIndex
+                    ? activeIndex === 0
+                      ? 'w-12 bg-black'
+                      : 'w-12 bg-yellow-400'
+                    : activeIndex === 0
+                      ? 'w-8 bg-black/30'
+                      : 'w-8 bg-white/50'
+                    }`}
                 />
               ))}
             </div>
@@ -375,8 +385,8 @@ const ProfessorsPage = () => {
         <div ref={cardsContainerRef} className="relative w-full lg:w-1/2 min-h-[500px] lg:min-h-screen bg-gray-900 overflow-hidden">
           {professors.map((prof, index) => (
             <div
-            key={prof.id}
-            className="professor-card absolute inset-0"
+              key={prof.id}
+              className="professor-card absolute inset-0"
             >
               <div className="relative w-full h-full overflow-hidden shadow-2xl bg-gray-800">
                 <img
@@ -388,11 +398,11 @@ const ProfessorsPage = () => {
                     const fallback = e.target.nextElementSibling;
                     if (fallback) fallback.style.display = 'flex';
                   }}
-                  />
-                <div 
-                  className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800" 
-                  style={{display: 'none'}}
-                  >
+                />
+                <div
+                  className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800"
+                  style={{ display: 'none' }}
+                >
                   <div className="text-center space-y-4">
                     <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
                       <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
