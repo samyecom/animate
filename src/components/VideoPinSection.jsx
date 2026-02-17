@@ -57,14 +57,17 @@ const VideoPinSection = () => {
           <img src="/images/circle-text.svg" alt="" className="spin-circle" />
           <button
             onClick={handlePlayClick}
-            className="play-btn cursor-pointer hover:scale-110 transition-transform duration-300"
+            className="play-btn cursor-pointer hover:scale-110 transition-transform duration-300 group"
             aria-label="Play video"
           >
-            <img
-              src="/images/play.svg"
-              alt=""
-              className="size-[3vw] ml-[.5vw]"
-            />
+            <svg
+              viewBox="0 0 24 24"
+              fill="currentColor"
+              className="size-[3.5vw] ml-1 text-white drop-shadow-lg"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path d="M8 5V19L19 12L8 5Z" />
+            </svg>
           </button>
         </div>
       </div>

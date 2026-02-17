@@ -3,12 +3,17 @@ import { cards } from "../constants";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { useMediaQuery } from "react-responsive";
+import TestimonialSectionMobile from "./TestimonialSectionMobile";
 
 const TestimonialSection = () => {
   const vdRef = useRef([]);
   const isMobile = useMediaQuery({
     query: "(max-width: 768px)",
   });
+
+  if (isMobile) {
+    return <TestimonialSectionMobile />;
+  }
 
   useGSAP(() => {
     const mm = gsap.matchMedia();

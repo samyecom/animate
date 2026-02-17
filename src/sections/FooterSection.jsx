@@ -37,15 +37,28 @@ const FooterSection = () => {
         )} */}
 
         <div className="flex-center gap-5 relative z-10 md:mt-20 mt-5">
-          <div className="social-btn">
-            <img src="./images/yt.svg" alt="" />
-          </div>
-          <div className="social-btn">
-            <img src="./images/insta.svg" alt="" />
-          </div>
-          <div className="social-btn">
-            <img src="./images/tiktok.svg" alt="" />
-          </div>
+          {/* <div className="social-btn">
+            <img src="/images/yt.svg" alt="YouTube" />
+          </div> */}
+          <a
+            href="https://www.instagram.com/_weinfluence/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn"
+          >
+            <img src="/images/insta.svg" alt="Instagram" />
+          </a>
+          <a
+            href="https://in.linkedin.com/company/weinfluence-academy"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="social-btn"
+          >
+            <img src="/images/linkedin.svg" alt="LinkedIn" />
+          </a>
+          {/* <div className="social-btn">
+            <img src="/images/tiktok.svg" alt="TikTok" />
+          </div> */}
         </div>
 
         <div className="mt-20 md:px-10 px-5 flex flex-col md:flex-row justify-between text-purple-bg font-paragraph md:text-lg font-medium">

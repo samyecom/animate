@@ -1,15 +1,15 @@
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import HomeNavBar from "./components/HomeNavBar";
 import DefaultNavBar from "./components/DefaultNavBar";
-import HeroSection from "./sections/HeroSection";
+import HeroSection from "./sections/Hero";
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
 import ErrorBoundary from "./components/ErrorBoundary";
 import MessageSection from "./sections/MessageSection";
-import FlavorSection from "./sections/FlavorSection";
+import FlavorSection from "./sections/Flavor";
 import { useGSAP } from "@gsap/react";
 import BenefitSection from "./sections/BenefitSection";
-import TestimonialSection from "./sections/TestimonialSection";
+import TestimonialSection from "./sections/Testimonial";
 import FooterSection from "./sections/FooterSection";
 import AboutUsHeroSection from "./about-us/HeroSection";
 import TeamSection from "./about-us/TeamSection";
