@@ -72,10 +72,10 @@ body::-webkit-scrollbar {
     @apply relative bg-purple-bg w-screen h-dvh overflow-hidden;
 
     .hero-content {
-      @apply relative z-10 w-full h-full flex flex-col justify-start items-center translate-y-10 pt-24;
+      @apply relative z-10 w-full h-full flex flex-col justify-center items-center translate-y-0 pt-0;
 
       @media (min-width: 768px) {
-        @apply justify-center pt-32;
+        @apply justify-start pt-32 translate-y-10;
       }
 
       @media (min-width: 1536px) {
@@ -138,11 +138,11 @@ body::-webkit-scrollbar {
     @apply bg-dark-purple text-purple-bg min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
 
     .msg-wrapper {
-      font-size: clamp(2.5rem, 8vw, 8.5rem);
-      @apply font-bold uppercase leading-[1.1] tracking-[-.35vw] flex flex-col justify-center items-center gap-14;
+      font-size: clamp(2rem, 7vw, 8.5rem);
+      @apply font-bold uppercase leading-tight tracking-[-.2vw] flex flex-col justify-center items-center gap-10 px-5 text-center;
 
       @media (min-width: 768px) {
-        @apply gap-24;
+        @apply gap-24 px-0 tracking-[-.35vw] leading-[1.1];
       }
     }
 
@@ -174,7 +174,7 @@ body::-webkit-scrollbar {
 }
 
 .flavor-section {
-  @apply min-h-dvh bg-purple-bg;
+  @apply min-h-dvh bg-purple-bg mb-20;
 
   .flavor-text-scroll {
     @apply rotate-[-3deg] md:translate-y-5 border-[.5vw] border-purple-bg absolute z-10;
@@ -289,16 +289,32 @@ body::-webkit-scrollbar {
 .testimonials-section {
   @apply bg-purple-bg relative w-full h-[120dvh];
 
+  @media (max-width: 768px) {
+    @apply h-auto min-h-screen pb-20;
+  }
+
   .pin-box {
     @apply flex items-center justify-center w-full md:ps-52 absolute 2xl:bottom-32 bottom-[50vh];
 
+    @media (max-width: 768px) {
+      @apply relative bottom-auto top-auto mt-10 ps-0 flex-col gap-10;
+    }
+
     .vd-card {
       @apply md:w-96 w-64 flex-none md:rounded-[2vw] rounded-3xl md:-ms-44 -ms-32 overflow-hidden 2xl:relative absolute border-[.5vw] border-purple-bg;
+
+      @media (max-width: 768px) {
+        @apply static ms-0 w-[85vw] h-[50vh] border-4;
+      }
     }
   }
 
   h1 {
-    @apply uppercase text-[15vw] leading-[105%] tracking-[-.4vw] ml-[2vw] font-bold;
+    @apply uppercase text-[12vw] leading-[105%] tracking-[-.4vw] ml-[2vw] font-bold;
+
+    @media (max-width: 768px) {
+      @apply text-[14vw] ml-0 text-center;
+    }
   }
 }
 

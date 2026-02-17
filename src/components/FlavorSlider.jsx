@@ -159,12 +159,12 @@ const FlavorSlider = () => {
 
   return (
     <div ref={sliderRef} className="slider-wrapper">
-      <div className="flavors">
+      <div className="flavors pl-5 md:pl-0">
         {featureLists.map((item) => {
           const isExternal = item.openInNewTab || (item.link && item.link.startsWith('http'));
           const commonProps = {
             key: item.title,
-            className: `flavor-card relative z-30 lg:w-[50vw] w-96 lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${item.rotation}`,
+            className: `flavor-card relative z-30 lg:w-[50vw] w-[85vw] lg:h-[70vh] md:w-[90vw] md:h-[50vh] h-80 flex-none ${item.rotation}`,
           };
 
           const content = (

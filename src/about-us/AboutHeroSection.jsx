@@ -45,7 +45,7 @@ const AboutHeroSection = () => {
                 <div className="container mx-auto px-6 md:px-12">
                     <div className="max-w-4xl mx-auto">
                         <div className="about-intro-content">
-                            <h2 className="text-3xl md:text-4xl font-black text-dark-purple mb-6 text-center">
+                            <h2 className="about-hero-title text-3xl md:text-4xl font-black text-dark-purple mb-6 text-center">
                                 About WeInfluence Academy
                             </h2>
                             <div className="space-y-4 text-base md:text-lg text-dark-purple/90 font-paragraph leading-relaxed">

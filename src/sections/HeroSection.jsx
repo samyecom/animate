@@ -111,8 +111,8 @@ const HeroSection = () => {
 
       // Reduced intensity scroll effects for mobile
       gsap.to(".hero-container", {
-        scale: 0.95,
-        yPercent: 10,
+        scale: 0.98,
+        yPercent: 5,
         ease: "power1.inOut",
         scrollTrigger: {
           trigger: ".hero-container",
@@ -135,10 +135,10 @@ const HeroSection = () => {
               src="/images/temp-hero-bg.png"
               className="absolute bottom-40 md:bottom-0 size-full object-cover"
             />
-            <img
+            {/* <img
               src="/images/temp-hero.png"
               className="absolute bottom-0 left-1/2 -translate-x-1/2 object-auto h-80"
-            />
+            /> */}
           </>
         ) : (
           <video
@@ -151,7 +151,7 @@ const HeroSection = () => {
         )}
         <div className="hero-content opacity-0">
           <div className="overflow-hidden">
-            <h1 className="hero-title text-center">Create Powerful<br/> & Profitable</h1>
+            <h1 className="hero-title text-center">Create Powerful<br /> & Profitable</h1>
           </div>
           <div
             style={{

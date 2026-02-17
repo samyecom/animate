@@ -4,6 +4,7 @@ import DefaultNavBar from "./components/DefaultNavBar";
 import HeroSection from "./sections/HeroSection";
 import { ScrollSmoother, ScrollTrigger } from "gsap/all";
 import gsap from "gsap";
+import ErrorBoundary from "./components/ErrorBoundary";
 import MessageSection from "./sections/MessageSection";
 import FlavorSection from "./sections/FlavorSection";
 import { useGSAP } from "@gsap/react";
@@ -42,13 +43,23 @@ const AppContent = () => {
   const { isOpen, videoSrc, closeModal } = useVideoModal();
 
   useGSAP(() => {
-    ScrollSmoother.create({
+    // Kill any existing ScrollSmoother instance before creating a new one
+    // This currently isn't strictly necessary with useGSAP's cleanup, but good for safety
+    // ScrollSmoother.get()?.kill(); 
+
+    const smoother = ScrollSmoother.create({
       smooth: 3,
       effects: true,
       ignoreMobileResize: true,
       normalizeScroll: true,
     });
-  });
+
+    // Refresh ScrollTrigger after a short delay to ensure DOM is ready
+    setTimeout(() => {
+      ScrollTrigger.refresh();
+    }, 100);
+
+  }, [location.pathname]); // Re-run when location changes
 
   useEffect(() => {
     const smoothWrapper = document.getElementById("smooth-wrapper");
@@ -127,9 +138,11 @@ const AppContent = () => {
 const App = () => {
   return (
     <BrowserRouter>
-      <VideoModalProvider>
-        <AppContent />
-      </VideoModalProvider>
+      <ErrorBoundary>
+        <VideoModalProvider>
+          <AppContent />
+        </VideoModalProvider>
+      </ErrorBoundary>
     </BrowserRouter>
   );
 };

@@ -65,16 +65,17 @@ const TestimonialSection = () => {
       const mobileTl = gsap.timeline({
         scrollTrigger: {
           trigger: ".testimonials-section",
-          start: "top 80%",
-          end: "bottom 20%",
-          scrub: 1,
+          start: "top 70%",
         },
       });
 
       mobileTl.from(".vd-card", {
-        yPercent: 100,
+        y: 100,
+        opacity: 0,
+        duration: 0.8,
         stagger: 0.2,
-        ease: "power1.inOut",
+        ease: "power2.out",
+        clearProps: "all"
       });
     });
 
@@ -97,6 +98,7 @@ const TestimonialSection = () => {
         <h1 className="text-black first-title">What's</h1>
         <h1 className="text-dark-purple sec-title">Everyone</h1>
         <h1 className="text-black third-title">Talking</h1>
+        <h1 className="text-dark-purple sec-title">About</h1>
       </div>
 
       <div className="pin-box">
