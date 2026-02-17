@@ -49,7 +49,7 @@ const TeamSection = () => {
     const leftColumnRef = useRef(null);
     const cardsContainerRef = useRef(null);
     const [activeIndex, setActiveIndex] = useState(0);
-    const [isMobile, setIsMobile] = useState(false);
+    const [isMobile, setIsMobile] = useState(() => typeof window !== 'undefined' && window.innerWidth < 1024);
     const scrollTriggerInstance = useRef(null);
     const mainTitleRef = useRef(null);
     const mobileTitleRef = useRef(null);
@@ -60,7 +60,6 @@ const TeamSection = () => {
             setIsMobile(window.innerWidth < 1024);
         };
 
-        checkMobile();
         window.addEventListener('resize', checkMobile);
 
         return () => window.removeEventListener('resize', checkMobile);
@@ -256,59 +255,61 @@ const TeamSection = () => {
 
     if (isMobile) {
         return (
-            <div className="bg-gray-900">
-                <div className="bg-amber-900 px-6 py-12 text-center">
-                    <h2 ref={mobileTitleRef} className="text-4xl sm:text-5xl font-black text-white leading-none mb-4">
+            <div className="bg-gray-900 pb-16">
+                <div className="bg-amber-900 px-4 py-8 text-center mb-0">
+                    <h2 ref={mobileTitleRef} className="text-3xl sm:text-4xl font-black text-white leading-none mb-3">
                         MEET THE
                     </h2>
                     <div className="inline-block">
-                        <span className="text-4xl sm:text-5xl font-black text-amber-900 bg-yellow-400 px-6 py-3 transform -skew-x-12 inline-block shadow-lg">
+                        <span className="text-3xl sm:text-4xl font-black text-amber-900 bg-yellow-400 px-5 py-2 transform -skew-x-12 inline-block shadow-lg">
                             TEAM
                         </span>
                     </div>
                 </div>
 
-                {teamMembers.map((member, index) => (
-                    <div key={member.id} className="mb-0">
-                        <div className="relative h-[500px] w-full">
-                            <img
-                                src={member.image}
-                                alt={`${member.name}`}
-                                className="absolute inset-0 w-full h-full object-cover"
-                                onError={(e) => {
-                                    e.target.style.display = 'none';
-                                    const fallback = e.target.nextElementSibling;
-                                    if (fallback) fallback.style.display = 'flex';
-                                }}
-                            />
-                            <div
-                                className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800"
-                                style={{ display: 'none' }}
-                            >
-                                <div className="text-center space-y-4">
-                                    <div className="w-24 h-24 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
-                                        <svg className="w-12 h-12 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                                            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
-                                        </svg>
+                <div className="px-5 flex flex-col gap-6 py-8">
+                    {teamMembers.map((member, index) => (
+                        <div key={member.id} className="w-full flex flex-col shadow-2xl rounded-2xl overflow-hidden">
+                            <div className="relative aspect-[4/5] w-full bg-gray-800">
+                                <img
+                                    src={member.image}
+                                    alt={`${member.name}`}
+                                    className="absolute inset-0 w-full h-full object-cover top-0"
+                                    onError={(e) => {
+                                        e.target.style.display = 'none';
+                                        const fallback = e.target.nextElementSibling;
+                                        if (fallback) fallback.style.display = 'flex';
+                                    }}
+                                />
+                                <div
+                                    className="absolute inset-0 flex items-center justify-center bg-gradient-to-br from-gray-700 to-gray-800"
+                                    style={{ display: 'none' }}
+                                >
+                                    <div className="text-center space-y-3">
+                                        <div className="w-16 h-16 bg-gradient-to-br from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto">
+                                            <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+                                            </svg>
+                                        </div>
+                                        <p className="text-white font-medium text-sm">{member.name}</p>
                                     </div>
-                                    <p className="text-white font-medium">{member.name}</p>
                                 </div>
                             </div>
-                        </div>
 
-                        <div className={`${member.bgColor} px-6 py-8 space-y-4`}>
-                            <h3 className="text-2xl sm:text-3xl font-bold text-white">
-                                {member.name}
-                            </h3>
-                            <p className="text-sm sm:text-base text-yellow-300 font-semibold">
-                                {member.title}
-                            </p>
-                            <p className="text-base sm:text-lg text-white leading-relaxed">
-                                {member.description}
-                            </p>
+                            <div className={`${member.bgColor} px-5 py-6 space-y-3 flex-1`}>
+                                <h3 className="text-2xl font-bold text-white leading-tight">
+                                    {member.name}
+                                </h3>
+                                <p className="text-xs text-yellow-300 font-bold uppercase tracking-wider">
+                                    {member.title}
+                                </p>
+                                <p className="text-sm text-white/90 leading-relaxed font-medium">
+                                    {member.description}
+                                </p>
+                            </div>
                         </div>
-                    </div>
-                ))}
+                    ))}
+                </div>
             </div>
         );
     }

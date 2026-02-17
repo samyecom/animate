@@ -41,14 +41,14 @@ const AboutHeroSection = () => {
     return (
         <>
             {/* About Us Introduction */}
-            <section className="about-intro-section bg-purple-bg py-8 md:py-12">
-                <div className="container mx-auto px-6 md:px-12">
+            <section className="about-intro-section bg-purple-bg py-12 md:py-20">
+                <div className="container mx-auto px-4 md:px-12">
                     <div className="max-w-4xl mx-auto">
                         <div className="about-intro-content">
-                            <h2 className="about-hero-title text-3xl md:text-4xl font-black text-dark-purple mb-6 text-center">
+                            <h2 className="about-hero-title text-3xl md:text-5xl font-black text-dark-purple mb-6 text-center leading-tight">
                                 About WeInfluence Academy
                             </h2>
-                            <div className="space-y-4 text-base md:text-lg text-dark-purple/90 font-paragraph leading-relaxed">
+                            <div className="space-y-6 text-base md:text-xl text-dark-purple/90 font-paragraph leading-relaxed">
                                 <p>
                                     At WeInfluence Academy, we believe every creator has the potential to become legendary. Our mission is to transform aspiring professionals into industry leaders through cutting-edge education, personalized coaching, and a vibrant community of like-minded individuals.
                                 </p>
@@ -66,40 +66,40 @@ const AboutHeroSection = () => {
 
             {/* Vision & Mission Section */}
             <section className="vision-mission-section bg-gradient-to-br from-purple-bg to-purple-100 py-16 md:py-24">
-                <div className="container mx-auto px-6 md:px-12">
+                <div className="container mx-auto px-4 md:px-12">
                     <div className="max-w-6xl mx-auto">
-                        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
+                        <div className="grid md:grid-cols-2 gap-6 md:gap-12">
                             {/* Vision Card */}
-                            <div className="vision-mission-card bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center">
-                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="vision-mission-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                                <div className="flex items-center gap-4 mb-4 md:mb-6">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-500 to-purple-700 rounded-xl flex items-center justify-center shrink-0">
+                                        <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 12a3 3 0 11-6 0 3 3 0 016 0z" />
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M2.458 12C3.732 7.943 7.523 5 12 5c4.478 0 8.268 2.943 9.542 7-1.274 4.057-5.064 7-9.542 7-4.477 0-8.268-2.943-9.542-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-3xl md:text-4xl font-black text-dark-purple">
+                                    <h3 className="text-2xl md:text-4xl font-black text-dark-purple">
                                         Our Vision
                                     </h3>
                                 </div>
-                                <p className="text-lg text-dark-purple/80 leading-relaxed">
+                                <p className="text-base md:text-lg text-dark-purple/80 leading-relaxed">
                                     To be the world's leading platform for creator education, empowering millions to turn their passion into thriving careers. We envision a future where every creator has access to world-class training, mentorship, and resources to achieve their dreams.
                                 </p>
                             </div>
 
                             {/* Mission Card */}
-                            <div className="vision-mission-card bg-white/80 backdrop-blur-sm rounded-2xl p-8 md:p-10 shadow-xl hover:shadow-2xl transition-shadow duration-300">
-                                <div className="flex items-center gap-4 mb-6">
-                                    <div className="w-16 h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center">
-                                        <svg className="w-8 h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <div className="vision-mission-card bg-white/80 backdrop-blur-sm rounded-2xl p-6 md:p-10 shadow-xl hover:shadow-2xl transition-shadow duration-300">
+                                <div className="flex items-center gap-4 mb-4 md:mb-6">
+                                    <div className="w-12 h-12 md:w-16 md:h-16 bg-gradient-to-br from-purple-600 to-purple-800 rounded-xl flex items-center justify-center shrink-0">
+                                        <svg className="w-6 h-6 md:w-8 md:h-8 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                                             <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 10V3L4 14h7v7l9-11h-7z" />
                                         </svg>
                                     </div>
-                                    <h3 className="text-3xl md:text-4xl font-black text-dark-purple">
+                                    <h3 className="text-2xl md:text-4xl font-black text-dark-purple">
                                         Our Mission
                                     </h3>
                                 </div>
-                                <p className="text-lg text-dark-purple/80 leading-relaxed">
+                                <p className="text-base md:text-lg text-dark-purple/80 leading-relaxed">
                                     To deliver exceptional education and support that transforms aspiring creators into industry leaders. Through innovative teaching methods, personalized coaching, and a supportive community, we help our students achieve measurable success and lasting impact.
                                 </p>
                             </div>
