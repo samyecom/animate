@@ -45,21 +45,19 @@ const DefaultNavBar = () => {
       <div className="flex items-center gap-4">
         <Link
           to="/"
-          className={`px-6 py-2 rounded-full font-semibold transition-all ${
-            location.pathname === "/"
+          className={`px-6 py-2 rounded-full font-semibold transition-all ${location.pathname === "/"
               ? "bg-dark-purple text-purple-bg"
               : "bg-white/50 backdrop-blur-lg text-dark-purple hover:bg-white/70"
-          }`}
+            }`}
         >
           Home
         </Link>
         <Link
           to="/about-us"
-          className={`px-6 py-2 rounded-full font-semibold transition-all ${
-            location.pathname === "/about-us"
+          className={`px-6 py-2 rounded-full font-semibold transition-all ${location.pathname.replace(/\/$/, "") === "/about-us"
               ? "bg-dark-purple text-purple-bg"
               : "bg-white/50 backdrop-blur-lg text-dark-purple hover:bg-white/70"
-          }`}
+            }`}
         >
           About Us
         </Link>

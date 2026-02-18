@@ -92,24 +92,24 @@ const HomeNavBar = () => {
           },
           0
         )
-        .to(
-          logoRef.current,
-          {
-            width: finalSize,
-            ease: "power2.inOut",
-          },
-          0
-        )
-        .to(
-          linksRef.current,
-          {
-            opacity: 1,
-            pointerEvents: "auto",
-            width: "100%",
-            ease: "power2.inOut",
-          },
-          "-=0.3"
-        );
+          .to(
+            logoRef.current,
+            {
+              width: finalSize,
+              ease: "power2.inOut",
+            },
+            0
+          )
+          .to(
+            linksRef.current,
+            {
+              opacity: 1,
+              pointerEvents: "auto",
+              width: "100%",
+              ease: "power2.inOut",
+            },
+            "-=0.3"
+          );
 
         if (burgerRef.current) {
           navTl.to(
@@ -191,7 +191,7 @@ const HomeNavBar = () => {
             style={{ display: "block" }}
           />
         </div>
-      
+
         <div ref={linksRef} className="flex items-center gap-4 w-full justify-end">
           <button
             ref={burgerRef}
@@ -204,21 +204,19 @@ const HomeNavBar = () => {
           <div className="menu-list hidden lg:flex items-center gap-4">
             <Link
               to="/"
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                location.pathname === "/"
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${location.pathname === "/"
                   ? "bg-dark-purple text-purple-bg"
                   : "bg-white/50 backdrop-blur-lg text-dark-purple hover:bg-white/70 hover:scale-105"
-              }`}
+                }`}
             >
               Home
             </Link>
             <Link
               to="/about-us"
-              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${
-                location.pathname === "/about-us"
+              className={`px-6 py-2 rounded-full font-semibold transition-all duration-300 ${location.pathname.replace(/\/$/, "") === "/about-us"
                   ? "bg-dark-purple text-purple-bg"
                   : "bg-white/50 backdrop-blur-lg text-dark-purple hover:bg-white/70 hover:scale-105"
-              }`}
+                }`}
             >
               About Us
             </Link>
@@ -250,22 +248,20 @@ const HomeNavBar = () => {
             <Link
               to="/"
               onClick={closeMenu}
-              className={`px-6 py-3 rounded-full font-semibold text-center transition-all duration-300 ${
-                location.pathname === "/"
+              className={`px-6 py-3 rounded-full font-semibold text-center transition-all duration-300 ${location.pathname === "/"
                   ? "bg-dark-purple text-purple-bg"
                   : "bg-white/50 backdrop-blur-lg text-dark-purple hover:bg-dark-purple hover:text-purple-bg"
-              }`}
+                }`}
             >
               Home
             </Link>
             <Link
               to="/about-us"
               onClick={closeMenu}
-              className={`px-6 py-3 rounded-full font-semibold text-center transition-all duration-300 ${
-                location.pathname === "/about-us"
+              className={`px-6 py-3 rounded-full font-semibold text-center transition-all duration-300 ${location.pathname.replace(/\/$/, "") === "/about-us"
                   ? "bg-dark-purple text-purple-bg"
                   : "bg-white/50 backdrop-blur-lg text-dark-purple hover:bg-dark-purple hover:text-purple-bg"
-              }`}
+                }`}
             >
               About Us
             </Link>
