@@ -20,6 +20,7 @@ import VideoModal from "./components/VideoModal";
 import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CoursePage from "./pages/CoursePage";
+import NotFound from "./pages/NotFound";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -126,6 +127,7 @@ const AppContent = () => {
             <Route path="/course" element={<CoursePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
+            <Route path="*" element={<NotFound />} />
           </Routes>
           <FooterSection />
         </div>

@@ -92,7 +92,7 @@ const FooterSection = () => {
         </div>
 
         <div className="copyright-box">
-          <p>Copyright © 2025 WeInfluence - All Rights Reserved</p>
+          <p>Copyright © {new Date().getFullYear()} WeInfluence - All Rights Reserved</p>
         </div>
       </div>
     </section>
