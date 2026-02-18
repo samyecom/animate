@@ -135,14 +135,14 @@ body::-webkit-scrollbar {
   }
 
   .message-content {
-    @apply bg-dark-purple text-purple-bg min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
+    @apply bg-dark-purple text-purple-bg min-h-[80vh] lg:min-h-dvh overflow-hidden flex justify-center items-center relative z-20;
 
     .msg-wrapper {
       font-size: clamp(2rem, 7vw, 8.5rem);
-      @apply font-bold uppercase leading-tight tracking-[-.2vw] flex flex-col justify-center items-center gap-10 px-5 text-center;
+      @apply font-bold uppercase leading-tight tracking-[-.2vw] flex flex-col justify-center items-center gap-4 px-5 text-center;
 
       @media (min-width: 768px) {
-        @apply gap-24 px-0 tracking-[-.35vw] leading-[1.1];
+        @apply gap-12 px-0 tracking-[-.35vw] leading-[1.1];
       }
     }
 
@@ -164,7 +164,7 @@ body::-webkit-scrollbar {
     }
 
     .msg-text-scroll {
-      @apply rotate-[3deg] -translate-y-5 absolute z-10 border-[.5vw] border-dark-purple;
+      @apply rotate-[3deg] translate-y-0 z-10 border-[.5vw] border-dark-purple -my-4 md:-my-8;
 
       @media (min-width: 1536px) {
         @apply translate-y-4;
@@ -266,7 +266,7 @@ body::-webkit-scrollbar {
   }
 
   .vd-pin-section {
-    @apply h-dvh overflow-hidden mt-20;
+    @apply h-dvh overflow-hidden md:mt-20 mt-10;
 
     @media (min-width: 768px) {
       @apply h-[110vh] !-translate-y-[15%] mt-0;
@@ -326,7 +326,19 @@ body::-webkit-scrollbar {
   }
 
   input {
-    @apply 2xl:text-4xl text-3xl placeholder:font-bold placeholder:tracking-tighter;
+    @apply 2xl:text-4xl text-3xl placeholder:font-bold placeholder:tracking-tighter bg-transparent border-none outline-none focus:ring-0;
+    caret-color: var(--color-purple-bg);
+
+    /* Nuclear Autofill Fix */
+    &:-webkit-autofill,
+    &:-webkit-autofill:hover,
+    &:-webkit-autofill:focus,
+    &:-webkit-autofill:active {
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: var(--color-purple-bg) !important;
+      transition: background-color 999999s ease-in-out 0s;
+      box-shadow: 0 0 0 1000px #222123 inset !important;
+    }
   }
 
   .copyright-box {

@@ -54,32 +54,32 @@ const FlavorMobile = () => {
     }, { scope: containerRef });
 
     return (
-        <section ref={containerRef} className="mobile-flavor-section min-h-dvh bg-purple-bg mb-20 overflow-hidden">
+        <section ref={containerRef} className="mobile-flavor-section lg:min-h-dvh bg-purple-bg mb-20 overflow-hidden">
             {/* Title Container */}
-            <div className="mobile-flavor-title h-80 w-full flex flex-col justify-center gap-4 px-5">
-                <div className="overflow-hidden py-3 first-text-split">
+            <div className="mobile-flavor-title md:h-80 w-full flex flex-col justify-center md:gap-0 px-5 py-4">
+                <div className="overflow-hidden first-text-split">
                     <h1 className="text-[14vw] font-bold uppercase leading-none tracking-tighter text-dark-purple">Beginner or pro</h1>
                 </div>
 
                 <div className="flavor-text-scroll relative rotate-[-3deg] border-[.5vw] border-purple-bg z-10 w-fit">
                     <div className="bg-dark-purple py-3 px-5">
-                        <h2 className="text-purple-bg text-4xl font-bold uppercase"><span className="text-[#ffbac3]">We</span> Influence</h2>
+                        <h2 className="text-purple-bg text-5xl font-bold uppercase"><span className="text-[#ffbac3]">We</span> Influence</h2>
                     </div>
                 </div>
 
-                <div className="overflow-hidden py-3 second-text-split">
+                <div className="overflow-hidden second-text-split">
                     <h1 className="text-[14vw] font-bold uppercase leading-none tracking-tighter text-dark-purple">creator journey</h1>
                 </div>
             </div>
 
             {/* Slider Container */}
-            <div className="slider-wrapper w-full mt-10">
-                <div className="flavors flex flex-col gap-16 px-5 w-full items-center">
+            <div className="slider-wrapper w-full">
+                <div className="flavors flex flex-col md:gap-16 gap-5 px-5 w-full items-center">
                     {featureLists.map((item) => {
                         const isExternal = item.openInNewTab || (item.link && item.link.startsWith('http'));
                         const commonProps = {
                             key: item.title,
-                            className: `flavor-card relative z-30 w-full aspect-[4/5] flex-none ${item.rotation}`,
+                            className: `flavor-card relative z-30 w-full aspect-[5/4] md:aspect-[4/5] flex-none ${item.rotation}`,
                         };
 
                         const content = (

@@ -14,7 +14,7 @@ const FooterSection = () => {
         className="w-full object-cover -translate-y-1"
       /> */}
 
-      <div className="2xl:h-[110dvh] relative md:pt-[20vh] pt-[10vh]">
+      <div className="2xl:h-[110dvh] relative md:pt-[20vh] pt-[4vh]">
         <div className="overflow-hidden z-10">
           <h1 className="general-title text-center text-purple-bg py-5">
             #WEINFLUENCEACADEMY
@@ -36,7 +36,7 @@ const FooterSection = () => {
           />
         )} */}
 
-        <div className="flex-center gap-5 relative z-10 md:mt-20 mt-5">
+        <div className="flex-center gap-5 relative z-10 md:mt-10 mt-0">
           {/* <div className="social-btn">
             <img src="/images/yt.svg" alt="YouTube" />
           </div> */}
@@ -61,7 +61,7 @@ const FooterSection = () => {
           </div> */}
         </div>
 
-        <div className="mt-20 md:px-10 px-5 flex flex-col md:flex-row justify-between text-purple-bg font-paragraph md:text-lg font-medium">
+        <div className="md:mt-10 mt-6 md:px-10 px-5 flex flex-col md:flex-row justify-between text-purple-bg font-paragraph md:text-lg font-medium">
           <div>
             <p className="font-bold">WeInfluence Academy</p>
             <div className="mt-4 flex flex-col gap-2">
@@ -79,10 +79,14 @@ const FooterSection = () => {
             <div className="flex justify-between items-center border-b border-purple-bg py-5 md:mt-4">
               <input
                 type="email"
+                name="entry_email_subscribe"
+                id="footer_email"
                 placeholder="Enter your email"
-                className="w-full placeholder:font-sans placeholder:text-purple-bg"
+                autoComplete="new-password"
+                spellCheck="false"
+                className="w-full placeholder:font-sans placeholder:text-purple-bg focus:outline-none text-purple-bg"
               />
-              <img src="/images/arrow.svg" alt="arrow" />
+              <img src="/images/arrow.svg" alt="arrow" className="cursor-pointer" />
             </div>
           </div>
         </div>

@@ -17,7 +17,6 @@ const AboutHeroSection = () => {
 
         tl.from(".about-intro-content", {
             opacity: 0,
-            filter: "blur(10px)",
             y: 30,
             duration: 1,
             ease: "power2.out",
@@ -41,14 +40,14 @@ const AboutHeroSection = () => {
     return (
         <>
             {/* About Us Introduction */}
-            <section className="about-intro-section bg-purple-bg py-12 md:py-20">
+            <section className="about-intro-section bg-purple-bg py-10 md:py-20">
                 <div className="container mx-auto px-4 md:px-12">
                     <div className="max-w-4xl mx-auto">
                         <div className="about-intro-content">
-                            <h2 className="about-hero-title text-3xl md:text-5xl font-black text-dark-purple mb-6 text-center leading-tight">
+                            <h2 className="about-hero-title text-3xl md:text-5xl font-black text-dark-purple mb-8 text-center leading-tight tracking-wide">
                                 About WeInfluence Academy
                             </h2>
-                            <div className="space-y-6 text-base md:text-xl text-dark-purple/90 font-paragraph leading-relaxed">
+                            <div className="space-y-8 text-base md:text-xl text-dark-purple/90 font-paragraph leading-relaxed tracking-wide">
                                 <p>
                                     At WeInfluence Academy, we believe every creator has the potential to become legendary. Our mission is to transform aspiring professionals into industry leaders through cutting-edge education, personalized coaching, and a vibrant community of like-minded individuals.
                                 </p>
@@ -65,7 +64,7 @@ const AboutHeroSection = () => {
             </section>
 
             {/* Vision & Mission Section */}
-            <section className="vision-mission-section bg-gradient-to-br from-purple-bg to-purple-100 py-16 md:py-24">
+            <section className="vision-mission-section bg-purple-bg py-10 pt-0 md:py-20">
                 <div className="container mx-auto px-4 md:px-12">
                     <div className="max-w-6xl mx-auto">
                         <div className="grid md:grid-cols-2 gap-6 md:gap-12">

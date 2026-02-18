@@ -60,15 +60,15 @@ const TestimonialMobile = () => {
     };
 
     return (
-        <section className="min-h-screen bg-purple-bg py-20 px-5 flex flex-col items-center overflow-hidden">
-            <div className="mobile-title text-center mb-12 flex flex-col items-center">
+        <section className="min-h-screen bg-purple-bg md:py-20 py-10 px-5 flex flex-col items-center overflow-hidden">
+            <div className="mobile-title text-center mb-6 flex flex-col items-center">
                 <h1 className="text-[12vw] font-bold uppercase text-black leading-none tracking-tighter">What's</h1>
                 <h1 className="text-[12vw] font-bold uppercase text-dark-purple leading-none tracking-tighter">Everyone</h1>
                 <h1 className="text-[12vw] font-bold uppercase text-black leading-none tracking-tighter">Talking</h1>
                 <h1 className="text-[12vw] font-bold uppercase text-dark-purple leading-none tracking-tighter">About</h1>
             </div>
 
-            <div className="mobile-testimonials-list w-full flex flex-col gap-10 items-center max-w-md pb-20">
+            <div className="mobile-testimonials-list w-full flex flex-col gap-4 items-center max-w-md md:pb-20 pb-0">
                 {cards.map((card, index) => (
                     <div
                         key={index}

@@ -70,7 +70,7 @@ const MessageSection = () => {
 
   return (
     <section className="message-content">
-      <div className="container mx-auto flex-center py-28 relative">
+      <div className="container mx-auto flex-center py-10 lg:py-28 relative">
         <div className="w-full h-full">
           <div className="msg-wrapper">
             <h1 className="first-message">From creators to professionals</h1>
@@ -86,14 +86,14 @@ const MessageSection = () => {
               </div>
             </div>
             <h1 className="second-message">
-            Academy is where every creator levels up
+              Academy is where every creator levels up
             </h1>
           </div>
 
-          <div className="flex-center md:mt-20 mt-10 flex-col gap-6">
-            <div className="max-w-md px-10 flex-center overflow-hidden">
-              <p>
-              No matter where you are in your creator journey, WeInfluence helps you grow, learn, and lead.
+          <div className="flex-center md:mt-10 mt-4 flex-col gap-4">
+            <div className="max-w-lg px-10 flex-center overflow-hidden">
+              <p className="text-xl">
+                No matter where you are in your creator journey, WeInfluence helps you grow, learn, and lead.
               </p>
             </div>
             <Link

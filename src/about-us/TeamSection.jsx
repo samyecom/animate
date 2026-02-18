@@ -12,8 +12,8 @@ const teamMembers = [
         title: 'Chief Creator Conductor',
         description: 'Mohita is the heartbeat of WeInfluence — the strategist who turns scrolls into soul and followers into fans. With her uncanny ability to decode what makes content click, she leads with heart, humor, and an endless stream of clever ideas that never stop engaging. ✨ Believes that great influence starts with one unforgettable "hello."',
         image: '/images/team1.png',
-        bgColor: 'bg-[#EEE5C2]',
-        textColor: 'text-black'
+        bgColor: 'bg-[#4f392a]',
+        textColor: 'text-white'
     },
     {
         id: 2,
@@ -39,8 +39,8 @@ const teamMembers = [
         title: 'Maestro of Team Mojo',
         description: 'Meet the spark plug of the crew. Rajesh keeps the energy infectious and the culture electrified — aligning teams, ideas, and ambitions in perfect harmony. Where there\'s chaos, he finds clarity (with a grin). 🎧 Believes every team needs a soundtrack and a strategy.',
         image: '/images/team4.jpg',
-        bgColor: 'bg-[#F5E0E0]',
-        textColor: 'text-black'
+        bgColor: 'bg-[#30445f]',
+        textColor: 'text-white'
     },
 ];
 
@@ -255,8 +255,8 @@ const TeamSection = () => {
 
     if (isMobile) {
         return (
-            <div className="bg-gray-900 pb-16">
-                <div className="bg-amber-900 px-4 py-8 text-center mb-0">
+            <div className="bg-gray-900">
+                <div className="bg-dark-purple px-4 py-8 text-center mb-0">
                     <h2 ref={mobileTitleRef} className="text-3xl sm:text-4xl font-black text-white leading-none mb-3">
                         MEET THE
                     </h2>
@@ -267,7 +267,7 @@ const TeamSection = () => {
                     </div>
                 </div>
 
-                <div className="px-5 flex flex-col gap-6 py-8">
+                <div className="px-5 flex flex-col gap-6 py-8 bg-dark-purple">
                     {teamMembers.map((member, index) => (
                         <div key={member.id} className="w-full flex flex-col shadow-2xl rounded-2xl overflow-hidden">
                             <div className="relative aspect-[4/5] w-full bg-gray-800">
@@ -363,11 +363,11 @@ const TeamSection = () => {
                                 <div
                                     key={index}
                                     className={`h-1 rounded-full transition-all duration-300 ${index === activeIndex
-                                        ? activeIndex === 0 || activeIndex === 3
-                                            ? 'w-12 bg-black'
+                                        ? activeIndex === 0 || activeIndex === 2
+                                            ? 'w-12 bg-white'
                                             : 'w-12 bg-yellow-400'
-                                        : activeIndex === 0 || activeIndex === 3
-                                            ? 'w-8 bg-black/30'
+                                        : activeIndex === 0 || activeIndex === 2
+                                            ? 'w-8 bg-white/30'
                                             : 'w-8 bg-white/50'
                                         }`}
                                 />

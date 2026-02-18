@@ -44,14 +44,14 @@ const BenefitSection = () => {
 
   return (
     <section className="benefit-section">
-      <div className="container mx-auto pt-20">
+      <div className="container mx-auto md:pt-20 pt-10">
         <div className="col-center">
           <p>
             Unlock the Advantages: <br />
             Explore the Key Benefits of Choosing WeInfluence
           </p>
 
-          <div className="mt-20 col-center">
+          <div className="md:mt-20 mt-10 col-center">
             <ClipPathTitle
               title={"WeInfluence"}
               color={"#FCEFEC"}

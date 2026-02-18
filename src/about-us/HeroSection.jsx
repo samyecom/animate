@@ -8,7 +8,7 @@ gsap.registerPlugin(SplitText);
 const AboutUsHeroSection = () => {
   useGSAP(() => {
     const titleSplit = SplitText.create(".about-hero-title", {
-      type: "chars",
+      type: "words,chars",
     });
 
     const tl = gsap.timeline({
@@ -19,7 +19,6 @@ const AboutUsHeroSection = () => {
       opacity: 0,
       y: 50,
       duration: 1,
-      filter: "blur(10px)",
       ease: "power2.out",
     })
       .from(
@@ -27,7 +26,6 @@ const AboutUsHeroSection = () => {
         {
           yPercent: 100,
           opacity: 0,
-          filter: "blur(10px)",
           stagger: 0.05,
           ease: "power3.out",
           duration: 0.8,
