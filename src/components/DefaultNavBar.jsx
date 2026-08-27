@@ -62,7 +62,7 @@ const DefaultNavBar = () => {
             style={{ display: "block" }}
           >
             <img
-              src="/images/main_logo.png"
+              src="/images/winfluence-logo.png"
               alt="na-logo"
               className="w-full object-contain"
               style={{ display: "block" }}
