@@ -21,6 +21,7 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import TermsOfService from "./pages/TermsOfService";
 import CoursePage from "./pages/CoursePage";
 import NotFound from "./pages/NotFound";
+import Home2 from "./pages/Home2";
 
 gsap.registerPlugin(ScrollTrigger, ScrollSmoother);
 
@@ -40,7 +41,7 @@ const HomePage = () => {
 
 const AppContent = () => {
   const location = useLocation();
-  const isHomePage = location.pathname === "/";
+  const isHomePage = location.pathname === "/" || location.pathname === "/home2";
   const { isOpen, videoSrc, closeModal } = useVideoModal();
 
   useGSAP(() => {
@@ -71,6 +72,7 @@ const AppContent = () => {
 
     const pageTitles = {
       "/": "WeInfluence Academy - Transform Creators to Professionals",
+      "/home2": "WeInfluence - Marketing Meets Media",
       "/about-us": "About Us - WeInfluence Academy",
       "/course": "Course - WeInfluence Academy Flagship Influencer Training Program",
       "/privacy-policy": "Privacy Policy - WeInfluence Academy",
@@ -79,6 +81,7 @@ const AppContent = () => {
 
     const pageDescriptions = {
       "/": "WeInfluence Academy helps creators grow, learn, and lead. Transform from creators to professionals with our comprehensive training programs.",
+      "/home2": "WeInfluence connects marketing, content creation, and professional podcast production under one roof to help brands, founders, and creators grow.",
       "/about-us": "Meet the professors and learn about WeInfluence Academy's mission to transform creators into professionals.",
       "/course": "WeInfluence Academy Flagship Influencer Training Program - 1 Month, 20 Working Days, 2 hrs/day. Transform from beginner to collaboration-ready influencer.",
       "/privacy-policy": "Privacy Policy for WeInfluence Academy. Learn how we protect and handle your personal information.",
@@ -123,13 +126,14 @@ const AppContent = () => {
         <div id="smooth-content">
           <Routes>
             <Route path="/" element={<HomePage />} />
+            <Route path="/home2" element={<Home2 />} />
             <Route path="/about-us" element={<><AboutUsHeroSection /><TeamSection /></>} />
             <Route path="/course" element={<CoursePage />} />
             <Route path="/privacy-policy" element={<PrivacyPolicy />} />
             <Route path="/terms-of-service" element={<TermsOfService />} />
             <Route path="*" element={<NotFound />} />
           </Routes>
-          <FooterSection />
+          {location.pathname !== "/home2" && <FooterSection />}
         </div>
       </div>
       <VideoModal isOpen={isOpen} onClose={closeModal} videoSrc={videoSrc} />
