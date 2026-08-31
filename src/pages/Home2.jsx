@@ -158,14 +158,14 @@ const HeroSection = () => {
             Your Brand Has a Story.
           </p>
           <div className="overflow-hidden">
-            <h1 className="hero-title text-center">We Make</h1>
+            <h1 className="hero-title text-center">We Make People</h1>
           </div>
           <div
             style={{ clipPath: "polygon(50% 0, 50% 0, 50% 100%, 50% 100%)" }}
             className="hero-text-scroll"
           >
             <div className="hero-subtitle">
-              <h1>People Listen.</h1>
+              <h1>Listen To Your Story.</h1>
             </div>
           </div>
           <h2 className="hero-desc font-paragraph text-dark-purple text-center max-w-2xl px-5 text-base md:text-lg leading-[115%] mt-3">
@@ -438,39 +438,46 @@ const AdvantagesSection = () => {
 
   const items = [
     {
-      title: "Marketing",
-      desc: "Build a smarter digital presence with strategy, social media, performance marketing and growth campaigns.",
+      title: "Content Strategy",
+      desc: "Build a smarter digital footprint with target research, brand positioning, and channel strategy.",
       badgeBg: "bg-dark-purple",
       badgeText: "text-purple-bg",
       rotateClass: "rotate-[1deg]"
     },
     {
-      title: "Content",
-      desc: "Create content that looks good, feels authentic and gives your audience a reason to stop scrolling.",
+      title: "Scripting",
+      desc: "From short-form reels to long-form video campaigns, we write scripts that keep viewers hooked.",
       badgeBg: "bg-[#f67f5d]",
       badgeText: "text-purple-bg",
       rotateClass: "rotate-[-1deg]"
     },
     {
-      title: "Podcast Studio",
-      desc: "A professional space for brands, founders and creators to record podcasts, interviews and video content.",
+      title: "Post Production",
+      desc: "Premium editing, sound engineering, color correction, and visual effects to make your content stand out.",
       badgeBg: "bg-white",
       badgeText: "text-dark-purple",
       rotateClass: "rotate-[2deg]"
     },
     {
       title: "Influencer Marketing",
-      desc: "Connect with relevant creators and turn collaborations into campaigns that people actually remember.",
+      desc: "Connect with matching creators and turn partnerships into campaigns that build authority and trust.",
       badgeBg: "bg-[#ffbac3]",
       badgeText: "text-dark-purple",
       rotateClass: "rotate-[-2deg]"
     },
     {
-      title: "Brand & Founder Content",
-      desc: "Build authority through founder-led content, personal branding and strategic storytelling.",
+      title: "Podcast Studio",
+      desc: "A professional recording space for brands, founders, and creators to film podcasts and high-quality interviews.",
       badgeBg: "bg-dark-purple",
       badgeText: "text-[#ffbac3]",
       rotateClass: "rotate-[1.5deg]"
+    },
+    {
+      title: "Brand & Founder Content",
+      desc: "Build authority and scale your personal brand with customized founder-led content and strategic storytelling.",
+      badgeBg: "bg-[#f67f5d]",
+      badgeText: "text-purple-bg",
+      rotateClass: "rotate-[-1.5deg]"
     }
   ];
 
